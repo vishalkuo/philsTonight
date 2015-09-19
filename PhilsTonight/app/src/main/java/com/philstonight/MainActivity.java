@@ -1,16 +1,30 @@
 package com.philstonight;
 
+import android.app.Activity;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.philstonight.SMSServices.SMSSender;
 
 public class MainActivity extends AppCompatActivity {
     private Button philsButton;
+    private static final String SENT = "SMS_SENT";
+    private static final String DELIVERED = "SMS_DELIVERED";
+    private IntentFilter intentFilter;
+    private static final String EXTRA_NAME = "name";
+    private static final String EXTRA_NUMBER = "number";
+    private SmsManager smsMgr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +36,16 @@ public class MainActivity extends AppCompatActivity {
         philsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SMSSender.sendMessage("6473821508");
+                for (int i = 0; i < 3; i++){
+                    sendText("6473821508", "Vishal", i);
+                }
+
             }
         });
+
+        intentFilter = new IntentFilter(SENT);
+        intentFilter.addAction(DELIVERED);
+        smsMgr = SmsManager.getDefault();
     }
 
     @Override
@@ -47,5 +68,86 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(receiver);
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        registerReceiver(receiver, intentFilter);
+    }
+
+    private void sendText(String conNumber, String conName, int requestCode)
+    {
+        Intent sentIntent = new Intent(SENT);
+        Intent deliveredIntent = new Intent(DELIVERED);
+
+        sentIntent.putExtra(EXTRA_NUMBER, conNumber);
+        sentIntent.putExtra(EXTRA_NAME, conName);
+
+        PendingIntent sentPI = PendingIntent.getBroadcast(this, requestCode, sentIntent, 0);
+        PendingIntent deliveredPI = PendingIntent.getBroadcast(this, requestCode, deliveredIntent, 0);
+
+        smsMgr.sendTextMessage(conNumber, null, "Hello", sentPI, deliveredPI);
+    }
+
+
+    private BroadcastReceiver receiver = new BroadcastReceiver()
+    {
+        @Override
+        public void onReceive(Context context, Intent intent)
+        {
+            if (SENT.equals(intent.getAction()))
+            {
+                String name = intent.getStringExtra("name");
+                String number = intent.getStringExtra("number");
+
+                switch (getResultCode())
+                {
+                    case Activity.RESULT_OK:
+                        toastShort("SMS sent to " + name + " & " + number);
+                        break;
+
+                    case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
+                        toastShort("Generic failure");
+                        break;
+
+                    case SmsManager.RESULT_ERROR_NO_SERVICE:
+                        toastShort("No service");
+                        break;
+
+                    case SmsManager.RESULT_ERROR_NULL_PDU:
+                        toastShort("Null PDU");
+                        break;
+
+                    case SmsManager.RESULT_ERROR_RADIO_OFF:
+                        toastShort("Radio off");
+                        break;
+                }
+            }
+            else if (DELIVERED.equals(intent.getAction()))
+            {
+                switch (getResultCode())
+                {
+                    case Activity.RESULT_OK:
+                        toastShort("SMS delivered");
+                        break;
+
+                    case Activity.RESULT_CANCELED:
+                        toastShort("SMS not delivered");
+                        break;
+                }
+            }
+        }
+    };
+
+    private void toastShort(String msg)
+    {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 }
