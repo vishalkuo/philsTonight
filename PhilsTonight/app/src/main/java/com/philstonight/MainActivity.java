@@ -7,6 +7,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.philstonight.SMSServices.SMSSender;
+
 public class MainActivity extends AppCompatActivity {
     private Button philsButton;
 
@@ -20,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         philsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                SMSSender.sendMessage("6473821508");
             }
         });
     }
