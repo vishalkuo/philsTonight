@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -56,6 +57,14 @@ public class MainActivity extends AppCompatActivity {
         squadList.add(new SquadMember("Alex", "6136175398"));
         SquadAdapter squadAdapter = new SquadAdapter(squadList);
         squadListView.setAdapter(squadAdapter);
+
+        squadListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                SquadMember squadMember = squadList.get(i);
+                sendText(squadMember.getNumber(), squadMember.getName(), 0);
+            }
+        });
 
         philsButton.setOnClickListener(new View.OnClickListener() {
             @Override
