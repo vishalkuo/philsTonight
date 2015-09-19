@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String EXTRA_NAME = "name";
     private static final String EXTRA_NUMBER = "number";
     private SmsManager smsMgr;
+    private ArrayList<SquadMember> squadList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,25 +38,27 @@ public class MainActivity extends AppCompatActivity {
 
         philsButton = (Button)findViewById(R.id.philsButton);
 
+        intentFilter = new IntentFilter(SENT);
+        intentFilter.addAction(DELIVERED);
+        smsMgr = SmsManager.getDefault();
+        final ListView squadListView = (ListView)findViewById(R.id.squad_list);
+
+
+        squadList.add(new SquadMember("Vishal", "6473821508"));
+        squadList.add(new SquadMember("Alex", "6136175398"));
+        SquadAdapter squadAdapter = new SquadAdapter(squadList);
+        squadListView.setAdapter(squadAdapter);
+
         philsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for (int i = 0; i < 3; i++){
-                    sendText("6473821508", "Vishal", i);
+                for (int i = 0; i < squadList.size(); i++) {
+                    SquadMember squadMember = squadList.get(i);
+                    sendText(squadMember.getNumber(), squadMember.getName(), i);
                 }
 
             }
         });
-        intentFilter = new IntentFilter(SENT);
-        intentFilter.addAction(DELIVERED);
-        smsMgr = SmsManager.getDefault();
-        ListView squadListView = (ListView)findViewById(R.id.squad_list);
-
-        ArrayList<SquadMember> squadList = new ArrayList<>();
-        squadList.add(new SquadMember("Vishal", "647 holla"));
-        squadList.add(new SquadMember("Justin", "519 holla"));
-        SquadAdapter squadAdapter = new SquadAdapter(squadList);
-        squadListView.setAdapter(squadAdapter);
     }
 
     @Override
@@ -103,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         PendingIntent sentPI = PendingIntent.getBroadcast(this, requestCode, sentIntent, 0);
         PendingIntent deliveredPI = PendingIntent.getBroadcast(this, requestCode, deliveredIntent, 0);
 
-        smsMgr.sendTextMessage(conNumber, null, "Hello", sentPI, deliveredPI);
+        smsMgr.sendTextMessage(conNumber, null, Globals.philsTonight, sentPI, deliveredPI);
     }
 
 
