@@ -6,8 +6,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 
+import com.philstonight.Models.SquadMember;
 import com.philstonight.SMSServices.SMSSender;
+import com.philstonight.ViewAdapters.SquadAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private Button philsButton;
@@ -25,6 +31,13 @@ public class MainActivity extends AppCompatActivity {
                 SMSSender.sendMessage("6473821508");
             }
         });
+        ListView squadListView = (ListView)findViewById(R.id.squad_list);
+
+        ArrayList<SquadMember> squadList = new ArrayList<>();
+        squadList.add(new SquadMember("Vishal", "647 holla"));
+        squadList.add(new SquadMember("Justin", "519 holla"));
+        SquadAdapter squadAdapter = new SquadAdapter(squadList);
+        squadListView.setAdapter(squadAdapter);
     }
 
     @Override
