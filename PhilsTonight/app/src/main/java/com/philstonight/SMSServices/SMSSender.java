@@ -1,15 +1,9 @@
 package com.philstonight.SMSServices;
 
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.telephony.SmsManager;
 
 import com.philstonight.Globals;
-
-import java.util.ArrayList;
 
 /**
  * Created by vishalkuo on 15-09-19.
@@ -22,12 +16,12 @@ public class SMSSender {
 
     public SMSSender(Context c) {
         this.c = c;
-        if (smsManager == null) {
-            smsManager = SmsManager.getDefault();
-        }
     }
 
     public static void sendMessage(String phoneNumber){
+        if (smsManager == null) {
+            smsManager = SmsManager.getDefault();
+        }
         smsManager.sendTextMessage(phoneNumber, null, Globals.philsTonight, null, null);
     }
 }
