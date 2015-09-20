@@ -7,6 +7,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
@@ -28,6 +29,7 @@ import com.philstonight.Models.SquadMember;
 import com.philstonight.ViewAdapters.SquadAdapter;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     static final int REQUEST_SELECT_CONTACT = 1;
@@ -39,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
     private static final String EXTRA_NUMBER = "number";
     private SmsManager smsMgr;
     private ArrayList<SquadMember> squadList = new ArrayList<>();
+    private Button contactButton;
+    private SquadAdapter squadAdapter;
+    private final String PREFSNAME = "PREFS";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +58,11 @@ public class MainActivity extends AppCompatActivity {
         final ListView squadListView = (ListView)findViewById(R.id.squad_list);
 
 
+        loadSharedPrefs();
+
         squadList.add(new SquadMember("Vishal", "6473821508"));
         squadList.add(new SquadMember("Alex", "6136175398"));
-        SquadAdapter squadAdapter = new SquadAdapter(squadList);
+        squadAdapter = new SquadAdapter(squadList);
         squadListView.setAdapter(squadAdapter);
 
         squadListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -77,30 +84,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ArrayList<SquadMember> squadList = new ArrayList<>();
-        squadList.add(new SquadMember("Vishal", "647 holla"));
-        squadList.add(new SquadMember("Justin", "519 holla"));
-        squadListView.setAdapter(squadAdapter);
-
         Intent intent = getIntent();
 
         ArrayList<String> nameCollection = new ArrayList<String>();
         ContentResolver cr = getContentResolver();
 
-        Cursor cursor = cr.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
-        while (cursor.moveToNext())
-        {
-            String nameFromContacts = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-            Log.d("nameFromContacts", nameFromContacts);
-            nameCollection.add(nameFromContacts);
-        }
-        cursor.close();
-        String[] names = new String[nameCollection.size()];
-        nameCollection.toArray(names);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_dropdown_item_1line, names);
-        AutoCompleteTextView nameField = (AutoCompleteTextView) findViewById(R.id.name_text);
-        nameField.setAdapter(adapter);
+//        Cursor cursor = cr.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
+//        while (cursor.moveToNext())
+//        {
+//            String nameFromContacts = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+//            Log.d("nameFromContacts", nameFromContacts);
+//            nameCollection.add(nameFromContacts);
+//        }
+//        cursor.close();
+//        String[] names = new String[nameCollection.size()];
+//        nameCollection.toArray(names);
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+//                android.R.layout.simple_dropdown_item_1line, names);
+//        AutoCompleteTextView nameField = (AutoCompleteTextView) findViewById(R.id.name_text);
+//        nameField.setAdapter(adapter);
+
+        contactButton = (Button)findViewById(R.id.contact_button);
+        contactButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addFromContacts(view);
+            }
+        });
     }
 
     @Override
@@ -150,10 +160,13 @@ public class MainActivity extends AppCompatActivity {
                 hasPhoneNum = Boolean.valueOf(cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER)));
                 if (hasPhoneNum) {
                     phoneNumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                    SquadMember squadMember = new SquadMember(contactName, phoneNumber);
+                    squadList.add(squadMember);
+                    squadAdapter.appendToSquad(squadMember);
+                    saveToSharedPrefs();
                 }
             }
             cursor.close();
-            AutoCompleteTextView nameField = (AutoCompleteTextView) findViewById(R.id.name_text);
         }
     }
     @Override
@@ -235,5 +248,20 @@ public class MainActivity extends AppCompatActivity {
     private void toastShort(String msg)
     {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    private void saveToSharedPrefs(SquadMember squadMember){
+        SharedPreferences.Editor editor = getSharedPreferences(PREFSNAME, MODE_PRIVATE).edit();
+        editor.putString(squadMember.getName(), squadMember.getNumber());
+        editor.commit();
+    }
+
+    private void loadSharedPrefs(){
+        SharedPreferences preferences = this.getSharedPreferences(PREFSNAME, Context.MODE_PRIVATE);
+        Map<String, ?> keys = preferences.getAll();
+
+        for (Map.Entry<String, ?> entry : keys.entrySet()){
+            squadList.add(new SquadMember(entry.getKey(), entry.getValue()));
+        }
     }
 }

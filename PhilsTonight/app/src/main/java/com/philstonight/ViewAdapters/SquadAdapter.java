@@ -21,6 +21,11 @@ public class SquadAdapter extends BaseAdapter {
         squadList.addAll(list);
     }
 
+    public void appendToSquad(SquadMember squadMember){
+        squadList.add(squadMember);
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getCount() {
         return squadList.size();

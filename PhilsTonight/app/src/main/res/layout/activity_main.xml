@@ -15,14 +15,15 @@
         android:layout_height="40dp"
         android:text="@string/phils">
     </Button>
-    <AutoCompleteTextView
-        android:id="@+id/name_text"
-        android:hint="@string/add_squad_hint"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+    <Button
+        android:id = "@+id/contact_button"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:text="Add to Squad"/>
     <ListView
         android:id="@+id/squad_list"
-        android:layout_below="@id/name_text"
+        android:layout_below="@id/contact_button"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent">
 
