@@ -28,13 +28,13 @@ import com.philstonight.ViewAdapters.SquadAdapter;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    static final int REQUEST_SELECT_CONTACT = 1;
-    private Button philsButton;
+    private static final int REQUEST_SELECT_CONTACT = 1;
     private static final String SENT = "SMS_SENT";
     private static final String DELIVERED = "SMS_DELIVERED";
-    private IntentFilter intentFilter;
     private static final String EXTRA_NAME = "name";
     private static final String EXTRA_NUMBER = "number";
+    private Button philsButton;
+    private IntentFilter intentFilter;
     private SmsManager smsMgr;
     private ArrayList<SquadMember> squadList = new ArrayList<>();
     private Button contactButton;
@@ -96,10 +96,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -146,6 +142,8 @@ public class MainActivity extends AppCompatActivity {
             cursor.close();
         }
     }
+
+
     @Override
     protected void onPause() {
         super.onPause();
