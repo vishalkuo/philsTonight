@@ -3,33 +3,28 @@ package com.philstonight;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.philstonight.Models.SquadMember;
+import com.philstonight.Util.SharedPrefsUtils;
+import com.philstonight.Util.UIUtils;
 import com.philstonight.ViewAdapters.SquadAdapter;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     static final int REQUEST_SELECT_CONTACT = 1;
@@ -43,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<SquadMember> squadList = new ArrayList<>();
     private Button contactButton;
     private SquadAdapter squadAdapter;
-    private final String PREFSNAME = "PREFS";
+    private Context c = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +52,13 @@ public class MainActivity extends AppCompatActivity {
         smsMgr = SmsManager.getDefault();
         final ListView squadListView = (ListView)findViewById(R.id.squad_list);
 
+        SquadMember squadMember = new SquadMember("Vishal", "6473821508");
+        SharedPrefsUtils.saveToSharedPrefs(squadMember, c);
 
-        loadSharedPrefs();
+        SharedPrefsUtils.loadSharedPrefs(this, squadList);
 
-        squadList.add(new SquadMember("Vishal", "6473821508"));
-        squadList.add(new SquadMember("Alex", "6136175398"));
+
+
         squadAdapter = new SquadAdapter(squadList);
         squadListView.setAdapter(squadAdapter);
 
@@ -84,26 +81,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Intent intent = getIntent();
-
-        ArrayList<String> nameCollection = new ArrayList<String>();
-        ContentResolver cr = getContentResolver();
-
-//        Cursor cursor = cr.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
-//        while (cursor.moveToNext())
-//        {
-//            String nameFromContacts = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-//            Log.d("nameFromContacts", nameFromContacts);
-//            nameCollection.add(nameFromContacts);
-//        }
-//        cursor.close();
-//        String[] names = new String[nameCollection.size()];
-//        nameCollection.toArray(names);
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-//                android.R.layout.simple_dropdown_item_1line, names);
-//        AutoCompleteTextView nameField = (AutoCompleteTextView) findViewById(R.id.name_text);
-//        nameField.setAdapter(adapter);
-
         contactButton = (Button)findViewById(R.id.contact_button);
         contactButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,16 +99,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -146,16 +117,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_SELECT_CONTACT && resultCode == RESULT_OK) {
             Uri contactUri = data.getData();
-            String contactName = null;
-            boolean hasPhoneNum = false;
-            String phoneNumber = "";
+            String contactName;
+            boolean hasPhoneNum;
+            String phoneNumber;
             Cursor cursor = getContentResolver().query(contactUri, null, null, null, null);
 
             if (cursor.moveToFirst()) {
-
-                // DISPLAY_NAME = The display name for the contact.
-                // HAS_PHONE_NUMBER =   An indicator of whether this contact has at least one phone number.
-
                 contactName = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
                 hasPhoneNum = Boolean.valueOf(cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER)));
                 if (hasPhoneNum) {
@@ -163,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                     SquadMember squadMember = new SquadMember(contactName, phoneNumber);
                     squadList.add(squadMember);
                     squadAdapter.appendToSquad(squadMember);
-                    saveToSharedPrefs();
+                    SharedPrefsUtils.saveToSharedPrefs(squadMember, c);
                 }
             }
             cursor.close();
@@ -209,23 +176,23 @@ public class MainActivity extends AppCompatActivity {
                 switch (getResultCode())
                 {
                     case Activity.RESULT_OK:
-                        toastShort("SMS sent to " + name + " & " + number);
+                        UIUtils.toastShort("SMS sent to " + name + " & " + number, c);
                         break;
 
                     case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
-                        toastShort("Generic failure");
+                        UIUtils.toastShort("Generic failure", c);
                         break;
 
                     case SmsManager.RESULT_ERROR_NO_SERVICE:
-                        toastShort("No service");
+                        UIUtils.toastShort("No service", c);
                         break;
 
                     case SmsManager.RESULT_ERROR_NULL_PDU:
-                        toastShort("Null PDU");
+                        UIUtils.toastShort("Null PDU", c);
                         break;
 
                     case SmsManager.RESULT_ERROR_RADIO_OFF:
-                        toastShort("Radio off");
+                        UIUtils.toastShort("Radio off", c);
                         break;
                 }
             }
@@ -234,34 +201,14 @@ public class MainActivity extends AppCompatActivity {
                 switch (getResultCode())
                 {
                     case Activity.RESULT_OK:
-                        toastShort("SMS delivered");
+                        UIUtils.toastShort("SMS delivered", c);
                         break;
 
                     case Activity.RESULT_CANCELED:
-                        toastShort("SMS not delivered");
+                        UIUtils.toastShort("SMS not delivered", c);
                         break;
                 }
             }
         }
     };
-
-    private void toastShort(String msg)
-    {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-    }
-
-    private void saveToSharedPrefs(SquadMember squadMember){
-        SharedPreferences.Editor editor = getSharedPreferences(PREFSNAME, MODE_PRIVATE).edit();
-        editor.putString(squadMember.getName(), squadMember.getNumber());
-        editor.commit();
-    }
-
-    private void loadSharedPrefs(){
-        SharedPreferences preferences = this.getSharedPreferences(PREFSNAME, Context.MODE_PRIVATE);
-        Map<String, ?> keys = preferences.getAll();
-
-        for (Map.Entry<String, ?> entry : keys.entrySet()){
-            squadList.add(new SquadMember(entry.getKey(), entry.getValue()));
-        }
-    }
 }
