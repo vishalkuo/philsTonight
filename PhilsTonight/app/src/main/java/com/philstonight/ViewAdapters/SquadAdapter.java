@@ -71,6 +71,7 @@ public class SquadAdapter extends BaseAdapter {
             public void onClick(View view) {
                 SharedPrefsUtils.deleteFromSharedPrefs(c, squadList.get(position).getName());
                 squadList.remove(position);
+                ((MainActivity)c).deleteUser(position);
                 notifyDataSetChanged();
             }
         });

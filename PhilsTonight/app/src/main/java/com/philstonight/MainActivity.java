@@ -203,4 +203,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     };
+
+    public void deleteUser(int position){
+        squadList.remove(position);
+    }
 }
