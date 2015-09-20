@@ -54,6 +54,7 @@ public class SquadAdapter extends BaseAdapter {
         SquadMember item = getItem(position);
 
         ((TextView)endView.findViewById(R.id.contact)).setText(item.getName());
+        ((TextView)endView.findViewById(R.id.num)).setText(item.getNumber());
 
         return endView;
     }

@@ -5,7 +5,18 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:orientation="vertical"
+    android:background="#4C6085"
     tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:text="@string/phils"
+        android:gravity="center"
+        android:textStyle="italic"
+        android:textSize="40dp"/>
 
     <Button
         android:id= "@+id/philsButton"
@@ -13,18 +24,29 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="30dp"
         android:layout_height="40dp"
+
         android:text="@string/phils">
     </Button>
     <Button
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_below="@id/title"
         android:id = "@+id/contact_button"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_centerHorizontal="true"
-        android:text="Add to Squad"/>
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/circle_button"
+        android:textColor="#FFF"
+        android:textSize="20dp"
+        android:text="+"/>
     <ListView
         android:id="@+id/squad_list"
         android:layout_below="@id/contact_button"
         android:layout_width="wrap_content"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:divider="#FFFFFF"
+        android:dividerHeight="4px"
         android:layout_height="fill_parent">
 
     </ListView>
