@@ -53,12 +53,7 @@ public class MainActivity extends AppCompatActivity {
         smsMgr = SmsManager.getDefault();
         final ListView squadListView = (ListView)findViewById(R.id.squad_list);
 
-        SquadMember squadMember = new SquadMember("Vishal", "6473821508");
-        SharedPrefsUtils.saveToSharedPrefs(squadMember, c);
-
         SharedPrefsUtils.loadSharedPrefs(this, squadList);
-
-
 
         squadAdapter = new SquadAdapter(squadList, c);
         squadListView.setAdapter(squadAdapter);
@@ -78,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
                     SquadMember squadMember = squadList.get(i);
                     sendText(squadMember.getNumber(), squadMember.getName(), i);
                 }
+                UIUtils.toastShort("Squad Alerted", c);
 
             }
         });
@@ -185,12 +181,10 @@ public class MainActivity extends AppCompatActivity {
             if (SENT.equals(intent.getAction()))
             {
                 String name = intent.getStringExtra("name");
-                String number = intent.getStringExtra("number");
 
                 switch (getResultCode())
                 {
                     case Activity.RESULT_OK:
-                        UIUtils.toastShort("SMS sent to " + name + " & " + number, c);
                         break;
 
                     case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
