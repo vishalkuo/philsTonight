@@ -12,6 +12,7 @@ import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        squadAdapter = new SquadAdapter(squadList);
+        squadAdapter = new SquadAdapter(squadList, c);
         squadListView.setAdapter(squadAdapter);
 
         squadListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -118,15 +119,28 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == REQUEST_SELECT_CONTACT && resultCode == RESULT_OK) {
             Uri contactUri = data.getData();
             String contactName;
-            boolean hasPhoneNum;
-            String phoneNumber;
+            String contactId;
+            int hasPhoneNum;
+            String phoneNumber = "";
             Cursor cursor = getContentResolver().query(contactUri, null, null, null, null);
 
             if (cursor.moveToFirst()) {
                 contactName = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-                hasPhoneNum = Boolean.valueOf(cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER)));
-                if (hasPhoneNum) {
-                    phoneNumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                contactId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
+                hasPhoneNum = Integer.valueOf(cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER)));
+                if (hasPhoneNum != 0) {
+                    Cursor pCur = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                            null,
+                            ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?", new String[]{contactId}, null);
+
+                    while (pCur.moveToNext())
+                    {
+                        String phone = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                        phoneNumber = phone;
+                    }
+
+                    pCur.close();
+
                     SquadMember squadMember = new SquadMember(contactName, phoneNumber);
                     squadList.add(squadMember);
                     squadAdapter.appendToSquad(squadMember);

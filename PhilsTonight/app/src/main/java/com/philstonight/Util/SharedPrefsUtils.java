@@ -26,4 +26,10 @@ public class SharedPrefsUtils {
             squadList.add(new SquadMember(entry.getKey(), entry.getValue().toString()));
         }
     }
+
+    public static void deleteFromSharedPrefs(Context context, String name){
+        SharedPreferences.Editor editor = context.getSharedPreferences(Globals.PREFSNAME, Context.MODE_PRIVATE).edit();
+        editor.remove(name);
+        editor.commit();
+    }
 }

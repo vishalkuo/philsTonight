@@ -1,13 +1,16 @@
 package com.philstonight.ViewAdapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.philstonight.Models.SquadMember;
 import com.philstonight.R;
+import com.philstonight.Util.SharedPrefsUtils;
 
 import java.util.ArrayList;
 
@@ -16,9 +19,11 @@ import java.util.ArrayList;
  */
 public class SquadAdapter extends BaseAdapter {
     private final ArrayList<SquadMember> squadList = new ArrayList<>();
+    private Context c;
 
-    public SquadAdapter(ArrayList<SquadMember> list) {
+    public SquadAdapter(ArrayList<SquadMember> list, Context context) {
         squadList.addAll(list);
+        c = context;
     }
 
     public void appendToSquad(SquadMember squadMember){
@@ -42,8 +47,9 @@ public class SquadAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         final View endView;
+        Button delete;
 
         if (convertView == null){
             endView = LayoutInflater.from(parent.getContext()).inflate(R.layout.squad_adapter_list, parent, false);
@@ -51,10 +57,21 @@ public class SquadAdapter extends BaseAdapter {
             endView = convertView;
         }
 
-        SquadMember item = getItem(position);
+        final SquadMember item = getItem(position);
 
         ((TextView)endView.findViewById(R.id.contact)).setText(item.getName());
         ((TextView)endView.findViewById(R.id.num)).setText(item.getNumber());
+
+        delete = (Button)endView.findViewById(R.id.deleteBtn);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPrefsUtils.deleteFromSharedPrefs(c, squadList.get(position).getName());
+                squadList.remove(position);
+                notifyDataSetChanged();
+            }
+        });
+
 
         return endView;
     }

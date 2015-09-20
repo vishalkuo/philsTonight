@@ -24,7 +24,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="30dp"
         android:layout_height="40dp"
-
+        android:textColor="#FFF"
+        android:background="@drawable/btn_selector"
         android:text="@string/phils">
     </Button>
     <Button
@@ -32,10 +33,10 @@
         android:layout_marginBottom="8dp"
         android:layout_below="@id/title"
         android:id = "@+id/contact_button"
-        android:layout_width="wrap_content"
+        android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentEnd="true"
-        android:background="@drawable/circle_button"
+        android:background="@drawable/btn_selector"
         android:textColor="#FFF"
         android:textSize="20dp"
         android:text="+"/>
@@ -47,6 +48,7 @@
         android:paddingRight="8dp"
         android:divider="#FFFFFF"
         android:dividerHeight="4px"
+        android:layout_above="@id/philsButton"
         android:layout_height="fill_parent">
 
     </ListView>
