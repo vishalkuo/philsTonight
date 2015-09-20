@@ -8,9 +8,11 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.philstonight.MainActivity;
 import com.philstonight.Models.SquadMember;
 import com.philstonight.R;
 import com.philstonight.Util.SharedPrefsUtils;
+import com.philstonight.Util.UIUtils;
 
 import java.util.ArrayList;
 
@@ -50,6 +52,7 @@ public class SquadAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         final View endView;
         Button delete;
+        Button sms;
 
         if (convertView == null){
             endView = LayoutInflater.from(parent.getContext()).inflate(R.layout.squad_adapter_list, parent, false);
@@ -69,6 +72,15 @@ public class SquadAdapter extends BaseAdapter {
                 SharedPrefsUtils.deleteFromSharedPrefs(c, squadList.get(position).getName());
                 squadList.remove(position);
                 notifyDataSetChanged();
+            }
+        });
+
+        sms = (Button)endView.findViewById(R.id.smsBtn);
+        sms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity)c).sendText(squadList.get(position).getNumber(), squadList.get(position).getName(), 0);
+                UIUtils.toastShort("SMS Sent", c);
             }
         });
 

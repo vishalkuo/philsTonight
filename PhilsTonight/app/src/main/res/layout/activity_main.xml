@@ -45,7 +45,6 @@
         android:layout_below="@id/contact_button"
         android:layout_width="wrap_content"
         android:paddingLeft="8dp"
-        android:paddingRight="8dp"
         android:divider="#FFFFFF"
         android:dividerHeight="4px"
         android:layout_above="@id/philsButton"

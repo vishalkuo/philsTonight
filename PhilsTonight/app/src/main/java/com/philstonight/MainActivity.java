@@ -12,11 +12,9 @@ import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -57,14 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
         squadAdapter = new SquadAdapter(squadList, c);
         squadListView.setAdapter(squadAdapter);
-
-        squadListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                SquadMember squadMember = squadList.get(i);
-                sendText(squadMember.getNumber(), squadMember.getName(), 0);
-            }
-        });
 
         philsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
         registerReceiver(receiver, intentFilter);
     }
 
-    private void sendText(String conNumber, String conName, int requestCode)
+    public void sendText(String conNumber, String conName, int requestCode)
     {
         Intent sentIntent = new Intent(SENT);
         Intent deliveredIntent = new Intent(DELIVERED);
@@ -181,7 +171,6 @@ public class MainActivity extends AppCompatActivity {
                 switch (getResultCode())
                 {
                     case Activity.RESULT_OK:
-                        UIUtils.toastShort("SMS Sent", c);
                         break;
 
                     case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
@@ -206,11 +195,9 @@ public class MainActivity extends AppCompatActivity {
                 switch (getResultCode())
                 {
                     case Activity.RESULT_OK:
-                        UIUtils.toastShort("SMS delivered", c);
                         break;
 
                     case Activity.RESULT_CANCELED:
-                        UIUtils.toastShort("SMS not delivered", c);
                         break;
                 }
             }
