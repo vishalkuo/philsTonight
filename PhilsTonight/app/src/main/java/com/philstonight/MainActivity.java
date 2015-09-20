@@ -180,11 +180,10 @@ public class MainActivity extends AppCompatActivity {
         {
             if (SENT.equals(intent.getAction()))
             {
-                String name = intent.getStringExtra("name");
-
                 switch (getResultCode())
                 {
                     case Activity.RESULT_OK:
+                        UIUtils.toastShort("SMS Sent", c);
                         break;
 
                     case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
