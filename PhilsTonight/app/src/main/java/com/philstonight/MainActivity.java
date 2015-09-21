@@ -1,6 +1,5 @@
 package com.philstonight;
 
-import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -17,8 +16,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import com.philstonight.Models.SquadMember;
+import com.philstonight.Util.SMSUtils;
 import com.philstonight.Util.SharedPrefsUtils;
 import com.philstonight.Util.UIUtils;
 import com.philstonight.ViewAdapters.SquadAdapter;
@@ -27,8 +28,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_SELECT_CONTACT = 1;
-    private static final String SENT = "SMS_SENT";
-    private static final String DELIVERED = "SMS_DELIVERED";
+    
     private static final String EXTRA_NAME = "name";
     private static final String EXTRA_NUMBER = "number";
     private Button philsButton;
@@ -38,23 +38,39 @@ public class MainActivity extends AppCompatActivity {
     private Button contactButton;
     private SquadAdapter squadAdapter;
     private Context c = this;
+    private Spinner placeSpinner;
+    private ListView squadListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        philsButton = (Button)findViewById(R.id.philsButton);
-
-        intentFilter = new IntentFilter(SENT);
-        intentFilter.addAction(DELIVERED);
-        smsMgr = SmsManager.getDefault();
-        final ListView squadListView = (ListView)findViewById(R.id.squad_list);
-
+        /**
+         * Load from prefs
+         */
         SharedPrefsUtils.loadSharedPrefs(this, squadList);
 
+        /**
+         * Find assets
+         */
+        philsButton = (Button)findViewById(R.id.philsButton);
+        placeSpinner = (Spinner)findViewById(R.id.spinner);
+        squadListView = (ListView)findViewById(R.id.squad_list);
+        contactButton = (Button)findViewById(R.id.contact_button);
+
+        /**
+         * List view
+         */
         squadAdapter = new SquadAdapter(squadList, c);
         squadListView.setAdapter(squadAdapter);
+
+        /**
+         * SMS Data
+         */
+        intentFilter = new IntentFilter(Globals.SENT);
+        intentFilter.addAction(Globals.DELIVERED);
+        smsMgr = SmsManager.getDefault();
 
         philsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +84,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        contactButton = (Button)findViewById(R.id.contact_button);
+        /**
+         * Load from contacts
+         */
         contactButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
             int hasPhoneNum;
             String phoneNumber = "";
             Cursor cursor = getContentResolver().query(contactUri, null, null, null, null);
-
             if (cursor.moveToFirst()) {
                 contactName = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
                 contactId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
@@ -120,18 +137,34 @@ public class MainActivity extends AppCompatActivity {
                         String phone = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
                         phoneNumber = phone;
                     }
-
                     pCur.close();
-
                     SquadMember squadMember = new SquadMember(contactName, phoneNumber);
                     squadList.add(squadMember);
                     squadAdapter.appendToSquad(squadMember);
                     SharedPrefsUtils.saveToSharedPrefs(squadMember, c);
                 }
+            }else{
+                UIUtils.toastShort("Contact has no number", c);
             }
             cursor.close();
         }
     }
+
+
+
+
+    public void sendText(String conNumber, String conName, int requestCode)
+    {
+        Intent sentIntent = new Intent(Globals.SENT);
+        Intent deliveredIntent = new Intent(Globals.DELIVERED);
+        sentIntent.putExtra(EXTRA_NUMBER, conNumber);
+        sentIntent.putExtra(EXTRA_NAME, conName);
+        PendingIntent sentPI = PendingIntent.getBroadcast(this, requestCode, sentIntent, 0);
+        PendingIntent deliveredPI = PendingIntent.getBroadcast(this, requestCode, deliveredIntent, 0);
+        smsMgr.sendTextMessage(conNumber, null, Globals.philsTonight, sentPI, deliveredPI);
+    }
+
+    private BroadcastReceiver receiver = SMSUtils.generateBroadcastReceiver();
 
 
     @Override
@@ -145,64 +178,6 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         registerReceiver(receiver, intentFilter);
     }
-
-    public void sendText(String conNumber, String conName, int requestCode)
-    {
-        Intent sentIntent = new Intent(SENT);
-        Intent deliveredIntent = new Intent(DELIVERED);
-
-        sentIntent.putExtra(EXTRA_NUMBER, conNumber);
-        sentIntent.putExtra(EXTRA_NAME, conName);
-
-        PendingIntent sentPI = PendingIntent.getBroadcast(this, requestCode, sentIntent, 0);
-        PendingIntent deliveredPI = PendingIntent.getBroadcast(this, requestCode, deliveredIntent, 0);
-
-        smsMgr.sendTextMessage(conNumber, null, Globals.philsTonight, sentPI, deliveredPI);
-    }
-
-
-    private BroadcastReceiver receiver = new BroadcastReceiver()
-    {
-        @Override
-        public void onReceive(Context context, Intent intent)
-        {
-            if (SENT.equals(intent.getAction()))
-            {
-                switch (getResultCode())
-                {
-                    case Activity.RESULT_OK:
-                        break;
-
-                    case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
-                        UIUtils.toastShort("Generic failure", c);
-                        break;
-
-                    case SmsManager.RESULT_ERROR_NO_SERVICE:
-                        UIUtils.toastShort("No service", c);
-                        break;
-
-                    case SmsManager.RESULT_ERROR_NULL_PDU:
-                        UIUtils.toastShort("Null PDU", c);
-                        break;
-
-                    case SmsManager.RESULT_ERROR_RADIO_OFF:
-                        UIUtils.toastShort("Radio off", c);
-                        break;
-                }
-            }
-            else if (DELIVERED.equals(intent.getAction()))
-            {
-                switch (getResultCode())
-                {
-                    case Activity.RESULT_OK:
-                        break;
-
-                    case Activity.RESULT_CANCELED:
-                        break;
-                }
-            }
-        }
-    };
 
     public void deleteUser(int position){
         squadList.remove(position);
