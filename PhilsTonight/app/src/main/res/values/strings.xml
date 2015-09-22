@@ -3,14 +3,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="phils">Phil\'s Tonight?</string>
+    <string name="phils">Tonight?</string>
     <string name="add_squad_hint">Search for contacts to add to squad</string>
 
-    <string-array name="places">
-        <item>Phil\'s</item>
-        <item>Chainsaw</item>
-        <item>Beta</item>
-        <item>Night School</item>
-        <item>Bomber</item>
-    </string-array>
 </resources>

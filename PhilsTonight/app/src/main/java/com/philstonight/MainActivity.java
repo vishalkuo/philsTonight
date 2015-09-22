@@ -14,10 +14,13 @@ import android.telephony.SmsManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+import com.philstonight.Models.RestaurantSingleton;
 import com.philstonight.Models.SquadMember;
 import com.philstonight.Util.SMSUtils;
 import com.philstonight.Util.SharedPrefsUtils;
@@ -56,6 +59,11 @@ public class MainActivity extends AppCompatActivity {
          */
         philsButton = (Button)findViewById(R.id.philsButton);
         placeSpinner = (Spinner)findViewById(R.id.spinner);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_adapter
+                , RestaurantSingleton.getInstance());
+
+        placeSpinner.setAdapter(adapter);
         squadListView = (ListView)findViewById(R.id.squad_list);
         contactButton = (Button)findViewById(R.id.contact_button);
 
@@ -64,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
          */
         squadAdapter = new SquadAdapter(squadList, c);
         squadListView.setAdapter(squadAdapter);
+        setTonightText();
 
         /**
          * SMS Data
@@ -91,6 +100,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 addFromContacts(view);
+            }
+        });
+
+        placeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                setTonightText();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
     }
@@ -150,9 +171,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-
-
     public void sendText(String conNumber, String conName, int requestCode)
     {
         Intent sentIntent = new Intent(Globals.SENT);
@@ -181,5 +199,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void deleteUser(int position){
         squadList.remove(position);
+    }
+
+    private void setTonightText(){
+        philsButton.setText(placeSpinner.getSelectedItem().toString() + " tonight?");
     }
 }

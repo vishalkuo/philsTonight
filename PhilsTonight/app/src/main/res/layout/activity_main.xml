@@ -8,21 +8,24 @@
     android:background="#4C6085"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#FFFFFF"
-        android:text="@string/phils"
-        android:gravity="center"
-        android:textStyle="italic"
-        android:textSize="40dp"/>
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:entries="@array/places">
+        android:layout_alignLeft="@id/title"
+        android:layout_height="wrap_content">
     </Spinner>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:text="@string/phils"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/spinner"
+        android:textStyle="italic"
+        android:textSize="28dp"/>
+
 
     <Button
         android:id= "@+id/philsButton"
