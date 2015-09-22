@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.philstonight.Models.RestaurantSingleton;
 import com.philstonight.Models.SquadMember;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private Context c = this;
     private Spinner placeSpinner;
     private ListView squadListView;
+    private TextView tonight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
          */
         philsButton = (Button)findViewById(R.id.philsButton);
         placeSpinner = (Spinner)findViewById(R.id.spinner);
+        tonight = (TextView)findViewById(R.id.tonight);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_adapter
                 , RestaurantSingleton.getInstance());
@@ -90,6 +93,13 @@ public class MainActivity extends AppCompatActivity {
                 }
                 UIUtils.toastShort("Squad Alerted", c);
 
+            }
+        });
+
+        tonight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                
             }
         });
 
@@ -179,7 +189,8 @@ public class MainActivity extends AppCompatActivity {
         sentIntent.putExtra(EXTRA_NAME, conName);
         PendingIntent sentPI = PendingIntent.getBroadcast(this, requestCode, sentIntent, 0);
         PendingIntent deliveredPI = PendingIntent.getBroadcast(this, requestCode, deliveredIntent, 0);
-        smsMgr.sendTextMessage(conNumber, null, Globals.philsTonight, sentPI, deliveredPI);
+        smsMgr.sendTextMessage(conNumber, null, placeSpinner.getSelectedItem().toString()
+                + Globals.TONIGHT, sentPI, deliveredPI);
     }
 
     private BroadcastReceiver receiver = SMSUtils.generateBroadcastReceiver();

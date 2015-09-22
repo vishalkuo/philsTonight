@@ -8,23 +8,31 @@
     android:background="#4C6085"
     tools:context=".MainActivity">
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="wrap_content"
-        android:layout_alignLeft="@id/title"
+    <LinearLayout
+        android:id="@+id/titleBlock"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    </Spinner>
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="0dp"
+            android:layout_alignLeft="@id/title"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5">
+        </Spinner>
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#FFFFFF"
-        android:text="@string/phils"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/spinner"
-        android:textStyle="italic"
-        android:textSize="28dp"/>
+        <TextView
+            android:id="@+id/tonight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:text="@string/phils"
+            android:layout_centerHorizontal="true"
+            android:textStyle="italic"
+            android:textSize="25dp"
+            android:layout_weight="0.5"/>
+
+    </LinearLayout>
+
 
 
     <Button
@@ -40,7 +48,7 @@
     <Button
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:layout_below="@id/title"
+        android:layout_below="@id/titleBlock"
         android:id = "@+id/contact_button"
         android:layout_width="40dp"
         android:layout_height="40dp"
