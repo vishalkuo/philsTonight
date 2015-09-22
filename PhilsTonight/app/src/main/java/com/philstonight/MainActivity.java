@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private Spinner placeSpinner;
     private ListView squadListView;
     private TextView tonight;
+    private int counter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,21 +89,22 @@ public class MainActivity extends AppCompatActivity {
         philsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for (int i = 0; i < squadList.size(); i++) {
-                    SquadMember squadMember = squadList.get(i);
-                    sendText(squadMember.getNumber(), squadMember.getName(), i);
-                }
-                UIUtils.toastShort("Squad Alerted", c);
-
+                alertSquad(null,"Squad Alerted");
             }
         });
 
-        tonight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                
-            }
-        });
+//        tonight.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
+//                if(motionEvent.getAction() == MotionEvent.ACTION_UP){
+//                    if (counter % 10 == 0) {
+//                        alertSquad("Philled Tonight", "Philled Tonight");
+//                    }
+//                    counter++;
+//                }
+//                return false;
+//            }
+//        });
 
         /**
          * Load from contacts
@@ -181,7 +184,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void sendText(String conNumber, String conName, int requestCode)
+    public void sendText(String conNumber, String conName, int requestCode){
+        sendText(conNumber, conName, requestCode, null);
+    }
+
+    public void sendText(String conNumber, String conName, int requestCode, String message)
     {
         Intent sentIntent = new Intent(Globals.SENT);
         Intent deliveredIntent = new Intent(Globals.DELIVERED);
@@ -189,8 +196,8 @@ public class MainActivity extends AppCompatActivity {
         sentIntent.putExtra(EXTRA_NAME, conName);
         PendingIntent sentPI = PendingIntent.getBroadcast(this, requestCode, sentIntent, 0);
         PendingIntent deliveredPI = PendingIntent.getBroadcast(this, requestCode, deliveredIntent, 0);
-        smsMgr.sendTextMessage(conNumber, null, placeSpinner.getSelectedItem().toString()
-                + Globals.TONIGHT, sentPI, deliveredPI);
+        message = (message == null) ? placeSpinner.getSelectedItem().toString() + Globals.TONIGHT : message;
+        smsMgr.sendTextMessage(conNumber, null, message, sentPI, deliveredPI);
     }
 
     private BroadcastReceiver receiver = SMSUtils.generateBroadcastReceiver();
@@ -214,5 +221,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void setTonightText(){
         philsButton.setText(placeSpinner.getSelectedItem().toString() + " tonight?");
+    }
+
+    private void alertSquad(String message, String toast){
+        for (int i = 0; i < squadList.size(); i++) {
+            SquadMember squadMember = squadList.get(i);
+            sendText(squadMember.getNumber(), squadMember.getName(), i, message);
+        }
+        UIUtils.toastShort(toast, c);
     }
 }
