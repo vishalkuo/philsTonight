@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:textSize="25dp"
-    android:textStyle="italic"
+    android:textStyle="bold"
     android:gravity="right"
     android:textAlignment="gravity"
     android:textColor="#FFFFFF"

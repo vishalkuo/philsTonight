@@ -27,7 +27,6 @@
             android:textColor="#FFFFFF"
             android:text="@string/phils"
             android:layout_centerHorizontal="true"
-            android:textStyle="italic"
             android:textSize="25dp"
             android:layout_weight="0.5"/>
 
