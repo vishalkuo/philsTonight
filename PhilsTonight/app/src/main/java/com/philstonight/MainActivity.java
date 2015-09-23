@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -46,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
     private Spinner placeSpinner;
     private ListView squadListView;
     private TextView tonight;
-    private int counter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         /**
          * Load from prefs
          */
-        SharedPrefsUtils.loadSharedPrefs(this, squadList);
+        loadInitialSettings();
 
         /**
          * Find assets
@@ -93,19 +91,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        tonight.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View view, MotionEvent motionEvent) {
-//                if(motionEvent.getAction() == MotionEvent.ACTION_UP){
-//                    if (counter % 10 == 0) {
-//                        alertSquad("Philled Tonight", "Philled Tonight");
-//                    }
-//                    counter++;
-//                }
-//                return false;
-//            }
-//        });
-
         /**
          * Load from contacts
          */
@@ -120,11 +105,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 setTonightText();
+                SharedPrefsUtils.saveToPrefs(Globals.SPINNER_KEY, placeSpinner.getSelectedItem().toString(),
+                        Globals.INITIAL_SETTINGS, c);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
     }
@@ -175,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
                     SquadMember squadMember = new SquadMember(contactName, phoneNumber);
                     squadList.add(squadMember);
                     squadAdapter.appendToSquad(squadMember);
-                    SharedPrefsUtils.saveToSharedPrefs(squadMember, c);
+                    SharedPrefsUtils.saveSquadMemberToSharedPrefs(squadMember, c);
                 }
             }else{
                 UIUtils.toastShort("Contact has no number", c);
@@ -229,5 +215,14 @@ public class MainActivity extends AppCompatActivity {
             sendText(squadMember.getNumber(), squadMember.getName(), i, message);
         }
         UIUtils.toastShort(toast, c);
+    }
+
+    private void loadInitialSettings(){
+        SharedPrefsUtils.loadSquadMemberFromSharedPrefs(this, squadList);
+        String val = SharedPrefsUtils.loadPrefValue(Globals.SPINNER_KEY, Globals.INITIAL_SETTINGS, c);
+        if (val != null){
+            placeSpinner.setSelection(RestaurantSingleton.getInstance().indexOf(val));
+            philsButton.setText(val);
+        }
     }
 }
