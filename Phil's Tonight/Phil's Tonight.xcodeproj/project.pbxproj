@@ -1,0 +1,519 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E56E083B1BB3A04000C0CA29 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E56E083A1BB3A04000C0CA29 /* main.m */; };
+		E56E083E1BB3A04000C0CA29 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E56E083D1BB3A04000C0CA29 /* AppDelegate.m */; };
+		E56E08411BB3A04000C0CA29 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E56E08401BB3A04000C0CA29 /* ViewController.m */; };
+		E56E08441BB3A04000C0CA29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56E08421BB3A04000C0CA29 /* Main.storyboard */; };
+		E56E08461BB3A04000C0CA29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E56E08451BB3A04000C0CA29 /* Assets.xcassets */; };
+		E56E08491BB3A04000C0CA29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56E08471BB3A04000C0CA29 /* LaunchScreen.storyboard */; };
+		E56E08541BB3A04000C0CA29 /* Phil_s_TonightTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E56E08531BB3A04000C0CA29 /* Phil_s_TonightTests.m */; };
+		E56E085F1BB3A04000C0CA29 /* Phil_s_TonightUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E56E085E1BB3A04000C0CA29 /* Phil_s_TonightUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E56E08501BB3A04000C0CA29 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E56E082E1BB3A04000C0CA29 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E56E08351BB3A04000C0CA29;
+			remoteInfo = "Phil's Tonight";
+		};
+		E56E085B1BB3A04000C0CA29 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E56E082E1BB3A04000C0CA29 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E56E08351BB3A04000C0CA29;
+			remoteInfo = "Phil's Tonight";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E56E08361BB3A04000C0CA29 /* Phil's Tonight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Phil's Tonight.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E56E083A1BB3A04000C0CA29 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E56E083C1BB3A04000C0CA29 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E56E083D1BB3A04000C0CA29 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E56E083F1BB3A04000C0CA29 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		E56E08401BB3A04000C0CA29 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		E56E08431BB3A04000C0CA29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E56E08451BB3A04000C0CA29 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E56E08481BB3A04000C0CA29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E56E084A1BB3A04000C0CA29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E56E084F1BB3A04000C0CA29 /* Phil's TonightTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Phil's TonightTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E56E08531BB3A04000C0CA29 /* Phil_s_TonightTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Phil_s_TonightTests.m; sourceTree = "<group>"; };
+		E56E08551BB3A04000C0CA29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E56E085A1BB3A04000C0CA29 /* Phil's TonightUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Phil's TonightUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E56E085E1BB3A04000C0CA29 /* Phil_s_TonightUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Phil_s_TonightUITests.m; sourceTree = "<group>"; };
+		E56E08601BB3A04000C0CA29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E56E08331BB3A04000C0CA29 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E56E084C1BB3A04000C0CA29 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E56E08571BB3A04000C0CA29 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E56E082D1BB3A04000C0CA29 = {
+			isa = PBXGroup;
+			children = (
+				E56E08381BB3A04000C0CA29 /* Phil's Tonight */,
+				E56E08521BB3A04000C0CA29 /* Phil's TonightTests */,
+				E56E085D1BB3A04000C0CA29 /* Phil's TonightUITests */,
+				E56E08371BB3A04000C0CA29 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E56E08371BB3A04000C0CA29 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E56E08361BB3A04000C0CA29 /* Phil's Tonight.app */,
+				E56E084F1BB3A04000C0CA29 /* Phil's TonightTests.xctest */,
+				E56E085A1BB3A04000C0CA29 /* Phil's TonightUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E56E08381BB3A04000C0CA29 /* Phil's Tonight */ = {
+			isa = PBXGroup;
+			children = (
+				E56E083C1BB3A04000C0CA29 /* AppDelegate.h */,
+				E56E083D1BB3A04000C0CA29 /* AppDelegate.m */,
+				E56E083F1BB3A04000C0CA29 /* ViewController.h */,
+				E56E08401BB3A04000C0CA29 /* ViewController.m */,
+				E56E08421BB3A04000C0CA29 /* Main.storyboard */,
+				E56E08451BB3A04000C0CA29 /* Assets.xcassets */,
+				E56E08471BB3A04000C0CA29 /* LaunchScreen.storyboard */,
+				E56E084A1BB3A04000C0CA29 /* Info.plist */,
+				E56E08391BB3A04000C0CA29 /* Supporting Files */,
+			);
+			path = "Phil's Tonight";
+			sourceTree = "<group>";
+		};
+		E56E08391BB3A04000C0CA29 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E56E083A1BB3A04000C0CA29 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E56E08521BB3A04000C0CA29 /* Phil's TonightTests */ = {
+			isa = PBXGroup;
+			children = (
+				E56E08531BB3A04000C0CA29 /* Phil_s_TonightTests.m */,
+				E56E08551BB3A04000C0CA29 /* Info.plist */,
+			);
+			path = "Phil's TonightTests";
+			sourceTree = "<group>";
+		};
+		E56E085D1BB3A04000C0CA29 /* Phil's TonightUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E56E085E1BB3A04000C0CA29 /* Phil_s_TonightUITests.m */,
+				E56E08601BB3A04000C0CA29 /* Info.plist */,
+			);
+			path = "Phil's TonightUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E56E08351BB3A04000C0CA29 /* Phil's Tonight */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E56E08631BB3A04000C0CA29 /* Build configuration list for PBXNativeTarget "Phil's Tonight" */;
+			buildPhases = (
+				E56E08321BB3A04000C0CA29 /* Sources */,
+				E56E08331BB3A04000C0CA29 /* Frameworks */,
+				E56E08341BB3A04000C0CA29 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Phil's Tonight";
+			productName = "Phil's Tonight";
+			productReference = E56E08361BB3A04000C0CA29 /* Phil's Tonight.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E56E084E1BB3A04000C0CA29 /* Phil's TonightTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E56E08661BB3A04000C0CA29 /* Build configuration list for PBXNativeTarget "Phil's TonightTests" */;
+			buildPhases = (
+				E56E084B1BB3A04000C0CA29 /* Sources */,
+				E56E084C1BB3A04000C0CA29 /* Frameworks */,
+				E56E084D1BB3A04000C0CA29 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E56E08511BB3A04000C0CA29 /* PBXTargetDependency */,
+			);
+			name = "Phil's TonightTests";
+			productName = "Phil's TonightTests";
+			productReference = E56E084F1BB3A04000C0CA29 /* Phil's TonightTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E56E08591BB3A04000C0CA29 /* Phil's TonightUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E56E08691BB3A04000C0CA29 /* Build configuration list for PBXNativeTarget "Phil's TonightUITests" */;
+			buildPhases = (
+				E56E08561BB3A04000C0CA29 /* Sources */,
+				E56E08571BB3A04000C0CA29 /* Frameworks */,
+				E56E08581BB3A04000C0CA29 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E56E085C1BB3A04000C0CA29 /* PBXTargetDependency */,
+			);
+			name = "Phil's TonightUITests";
+			productName = "Phil's TonightUITests";
+			productReference = E56E085A1BB3A04000C0CA29 /* Phil's TonightUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E56E082E1BB3A04000C0CA29 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = VishalKuo;
+				TargetAttributes = {
+					E56E08351BB3A04000C0CA29 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					E56E084E1BB3A04000C0CA29 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = E56E08351BB3A04000C0CA29;
+					};
+					E56E08591BB3A04000C0CA29 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = E56E08351BB3A04000C0CA29;
+					};
+				};
+			};
+			buildConfigurationList = E56E08311BB3A04000C0CA29 /* Build configuration list for PBXProject "Phil's Tonight" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E56E082D1BB3A04000C0CA29;
+			productRefGroup = E56E08371BB3A04000C0CA29 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E56E08351BB3A04000C0CA29 /* Phil's Tonight */,
+				E56E084E1BB3A04000C0CA29 /* Phil's TonightTests */,
+				E56E08591BB3A04000C0CA29 /* Phil's TonightUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E56E08341BB3A04000C0CA29 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E56E08491BB3A04000C0CA29 /* LaunchScreen.storyboard in Resources */,
+				E56E08461BB3A04000C0CA29 /* Assets.xcassets in Resources */,
+				E56E08441BB3A04000C0CA29 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E56E084D1BB3A04000C0CA29 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E56E08581BB3A04000C0CA29 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E56E08321BB3A04000C0CA29 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E56E08411BB3A04000C0CA29 /* ViewController.m in Sources */,
+				E56E083E1BB3A04000C0CA29 /* AppDelegate.m in Sources */,
+				E56E083B1BB3A04000C0CA29 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E56E084B1BB3A04000C0CA29 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E56E08541BB3A04000C0CA29 /* Phil_s_TonightTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E56E08561BB3A04000C0CA29 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E56E085F1BB3A04000C0CA29 /* Phil_s_TonightUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E56E08511BB3A04000C0CA29 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E56E08351BB3A04000C0CA29 /* Phil's Tonight */;
+			targetProxy = E56E08501BB3A04000C0CA29 /* PBXContainerItemProxy */;
+		};
+		E56E085C1BB3A04000C0CA29 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E56E08351BB3A04000C0CA29 /* Phil's Tonight */;
+			targetProxy = E56E085B1BB3A04000C0CA29 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E56E08421BB3A04000C0CA29 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E56E08431BB3A04000C0CA29 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E56E08471BB3A04000C0CA29 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E56E08481BB3A04000C0CA29 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E56E08611BB3A04000C0CA29 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		E56E08621BB3A04000C0CA29 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E56E08641BB3A04000C0CA29 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Phil's Tonight/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vishalkuo.Phil-s-Tonight";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E56E08651BB3A04000C0CA29 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Phil's Tonight/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vishalkuo.Phil-s-Tonight";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		E56E08671BB3A04000C0CA29 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Phil's TonightTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vishalkuo.Phil-s-TonightTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Phil's Tonight.app/Phil's Tonight";
+			};
+			name = Debug;
+		};
+		E56E08681BB3A04000C0CA29 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Phil's TonightTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vishalkuo.Phil-s-TonightTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Phil's Tonight.app/Phil's Tonight";
+			};
+			name = Release;
+		};
+		E56E086A1BB3A04000C0CA29 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Phil's TonightUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vishalkuo.Phil-s-TonightUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Phil's Tonight";
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		E56E086B1BB3A04000C0CA29 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Phil's TonightUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vishalkuo.Phil-s-TonightUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Phil's Tonight";
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E56E08311BB3A04000C0CA29 /* Build configuration list for PBXProject "Phil's Tonight" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E56E08611BB3A04000C0CA29 /* Debug */,
+				E56E08621BB3A04000C0CA29 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E56E08631BB3A04000C0CA29 /* Build configuration list for PBXNativeTarget "Phil's Tonight" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E56E08641BB3A04000C0CA29 /* Debug */,
+				E56E08651BB3A04000C0CA29 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E56E08661BB3A04000C0CA29 /* Build configuration list for PBXNativeTarget "Phil's TonightTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E56E08671BB3A04000C0CA29 /* Debug */,
+				E56E08681BB3A04000C0CA29 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E56E08691BB3A04000C0CA29 /* Build configuration list for PBXNativeTarget "Phil's TonightUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E56E086A1BB3A04000C0CA29 /* Debug */,
+				E56E086B1BB3A04000C0CA29 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E56E082E1BB3A04000C0CA29 /* Project object */;
+}
