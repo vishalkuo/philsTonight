@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "ToastView.h"
 
 @interface ViewController ()
 
@@ -16,7 +17,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    [_addContactBtn performSelectorOnMainThread:<#(nonnull SEL)#> withObject:<#(nullable id)#> waitUntilDone:<#(BOOL)#>]
+    [ToastView showToast:self.view withText:@"TEST" withDuration:1.0f];
 }
 
 - (void)didReceiveMemoryWarning {

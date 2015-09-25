@@ -49,7 +49,48 @@ float const ToastGap = 10.0f;
         }
     }
     
+    CGRect parentFrame = parentView.frame;
+
+    float yOrigin = parentFrame.size.height - (80.0 + ToastHeight *toastsVisible + ToastGap * toastsVisible);
+    
+    CGRect selfFrame = CGRectMake(parentFrame.origin.x + 20.0, yOrigin, parentFrame.size.width - 40, ToastHeight);
+    ToastView *toast = [[ToastView alloc] initWithFrame:selfFrame];
+    
+    toast.backgroundColor = [UIColor darkGrayColor];
+    toast.alpha = 0.0f;
+    toast.layer.cornerRadius = 6.0;
+    toast.text = text;
+    
+    [parentView addSubview:toast];
+    
+    
+    [UIView animateWithDuration:0.4 animations:^{
+        toast.alpha = 0.9f;
+        toast.toastLabel.alpha = 0.9f;
+    }completion:^(BOOL finished) {
+        if(finished){
+            
+        }
+    }];
+    
+    
+    [toast performSelector:@selector(hideSelf) withObject:nil afterDelay:length];
+    
 
 }
+
+- (void)hideSelf
+{
+    
+    [UIView animateWithDuration:0.38 animations:^{
+        self.alpha = 0.0;
+        self.toastLabel.alpha = 0.0;
+    }completion:^(BOOL finished) {
+        if(finished){
+            [self removeFromSuperview];
+        }
+    }];
+}
+
 
 @end

@@ -110,6 +110,9 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="addContactBtn" destination="6VB-1w-B1y" id="pr0-5b-1zn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
