@@ -17,6 +17,7 @@ public class RestaurantSingleton {
             restaurants.add("Beta");
             restaurants.add("Night School");
             restaurants.add("Bomber");
+            restaurants.add("Study");
         }
         return restaurants;
     }
