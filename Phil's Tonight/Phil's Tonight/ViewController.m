@@ -11,6 +11,7 @@
 
 @interface ViewController ()
 
+-(void)loadContacts;
 @end
 
 @implementation ViewController
@@ -18,13 +19,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [_addContactBtn performSelectorOnMainThread:<#(nonnull SEL)#> withObject:<#(nullable id)#> waitUntilDone:<#(BOOL)#>]
-    [ToastView showToast:self.view withText:@"TEST" withDuration:1.0f];
+    [_addContactBtn addTarget:self action:@selector(loadContacts) forControlEvents:UIControlEventTouchUpInside];
+
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)loadContacts{
+    ABAddressBookRef addressBookRef =  ABAddressBookCreateWithOptions(NULL, NULL);
+    if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusNotDetermined){
+        ABAddressBookRequestAccessWithCompletion(addressBookRef, ^(bool granted, CFErrorRef error) {
+            if (granted){
+                NSLog(@"GRANTED");
+            }else{
+                [ToastView showToast:self.view withText:@"REJECTED" withDuration:1.0f];
+            }
+        });
+    } else if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized){
+        NSLog(@"GUCCI");
+    } else{
+        NSLog(@"NOT GUCCI");
+    }
+}
+
 
 @end
