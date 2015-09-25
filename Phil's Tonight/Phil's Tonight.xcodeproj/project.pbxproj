@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E52FA9D51BB46203002104DC /* ToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = E52FA9D41BB46203002104DC /* ToastView.m */; settings = {ASSET_TAGS = (); }; };
 		E56E083B1BB3A04000C0CA29 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E56E083A1BB3A04000C0CA29 /* main.m */; };
 		E56E083E1BB3A04000C0CA29 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E56E083D1BB3A04000C0CA29 /* AppDelegate.m */; };
 		E56E08411BB3A04000C0CA29 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E56E08401BB3A04000C0CA29 /* ViewController.m */; };
@@ -35,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E52FA9D31BB46203002104DC /* ToastView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastView.h; sourceTree = "<group>"; };
+		E52FA9D41BB46203002104DC /* ToastView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastView.m; sourceTree = "<group>"; };
 		E56E08361BB3A04000C0CA29 /* Phil's Tonight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Phil's Tonight.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E56E083A1BB3A04000C0CA29 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E56E083C1BB3A04000C0CA29 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -78,6 +81,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E52FA9D21BB461CE002104DC /* ToastView */ = {
+			isa = PBXGroup;
+			children = (
+				E52FA9D31BB46203002104DC /* ToastView.h */,
+				E52FA9D41BB46203002104DC /* ToastView.m */,
+			);
+			name = ToastView;
+			sourceTree = "<group>";
+		};
 		E56E082D1BB3A04000C0CA29 = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +113,7 @@
 		E56E08381BB3A04000C0CA29 /* Phil's Tonight */ = {
 			isa = PBXGroup;
 			children = (
+				E52FA9D21BB461CE002104DC /* ToastView */,
 				E56E083C1BB3A04000C0CA29 /* AppDelegate.h */,
 				E56E083D1BB3A04000C0CA29 /* AppDelegate.m */,
 				E56E083F1BB3A04000C0CA29 /* ViewController.h */,
@@ -270,6 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E52FA9D51BB46203002104DC /* ToastView.m in Sources */,
 				E56E08411BB3A04000C0CA29 /* ViewController.m in Sources */,
 				E56E083E1BB3A04000C0CA29 /* AppDelegate.m in Sources */,
 				E56E083B1BB3A04000C0CA29 /* main.m in Sources */,
@@ -496,6 +510,7 @@
 				E56E08651BB3A04000C0CA29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E56E08661BB3A04000C0CA29 /* Build configuration list for PBXNativeTarget "Phil's TonightTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +519,7 @@
 				E56E08681BB3A04000C0CA29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E56E08691BB3A04000C0CA29 /* Build configuration list for PBXNativeTarget "Phil's TonightUITests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +528,7 @@
 				E56E086B1BB3A04000C0CA29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

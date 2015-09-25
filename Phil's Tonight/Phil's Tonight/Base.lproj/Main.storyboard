@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -57,7 +58,7 @@
                                 <variation key="widthClass=compact" constant="75"/>
                             </constraint>
                             <constraint firstAttribute="trailingMargin" secondItem="6VB-1w-B1y" secondAttribute="trailing" constant="8" id="eAR-tc-MJA"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="6cG-LN-SVV" secondAttribute="leading" id="ek1-2d-UCA"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="6cG-LN-SVV" secondAttribute="leading" constant="-8" id="ek1-2d-UCA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6cG-LN-SVV" secondAttribute="trailing" constant="8" id="lx7-uW-WYJ"/>
                             <constraint firstItem="h8b-ZY-hvs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="100" id="nW9-GW-U7v"/>
                             <constraint firstAttribute="trailingMargin" secondItem="h8b-ZY-hvs" secondAttribute="trailing" constant="100" id="slQ-lQ-Lbr"/>
@@ -70,19 +71,19 @@
                                 <exclude reference="h8b-ZY-hvs"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="0Wx-Yi-Iy0"/>
+                                <exclude reference="OYD-Cc-rQn"/>
+                                <exclude reference="5Ub-6E-Uba"/>
+                                <exclude reference="eAR-tc-MJA"/>
+                                <exclude reference="AIA-VT-phg"/>
+                                <exclude reference="nW9-GW-U7v"/>
+                                <exclude reference="slQ-lQ-Lbr"/>
                                 <exclude reference="LxP-fu-nXx"/>
                                 <exclude reference="Vd5-v5-qgz"/>
                                 <exclude reference="dOl-JO-jbS"/>
                                 <exclude reference="EMm-5T-b3S"/>
                                 <exclude reference="ek1-2d-UCA"/>
                                 <exclude reference="lx7-uW-WYJ"/>
-                                <exclude reference="5Ub-6E-Uba"/>
-                                <exclude reference="eAR-tc-MJA"/>
-                                <exclude reference="AIA-VT-phg"/>
-                                <exclude reference="nW9-GW-U7v"/>
-                                <exclude reference="slQ-lQ-Lbr"/>
-                                <exclude reference="0Wx-Yi-Iy0"/>
-                                <exclude reference="OYD-Cc-rQn"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -93,19 +94,19 @@
                                 <include reference="h8b-ZY-hvs"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="0Wx-Yi-Iy0"/>
+                                <include reference="OYD-Cc-rQn"/>
+                                <include reference="5Ub-6E-Uba"/>
+                                <include reference="eAR-tc-MJA"/>
+                                <include reference="AIA-VT-phg"/>
+                                <include reference="nW9-GW-U7v"/>
+                                <include reference="slQ-lQ-Lbr"/>
                                 <include reference="LxP-fu-nXx"/>
                                 <include reference="Vd5-v5-qgz"/>
                                 <include reference="dOl-JO-jbS"/>
                                 <include reference="EMm-5T-b3S"/>
                                 <include reference="ek1-2d-UCA"/>
                                 <include reference="lx7-uW-WYJ"/>
-                                <include reference="5Ub-6E-Uba"/>
-                                <include reference="eAR-tc-MJA"/>
-                                <include reference="AIA-VT-phg"/>
-                                <include reference="nW9-GW-U7v"/>
-                                <include reference="slQ-lQ-Lbr"/>
-                                <include reference="0Wx-Yi-Iy0"/>
-                                <include reference="OYD-Cc-rQn"/>
                             </mask>
                         </variation>
                     </view>
