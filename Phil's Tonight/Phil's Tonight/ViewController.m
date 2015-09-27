@@ -41,8 +41,22 @@
     } else if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized){
         NSLog(@"GUCCI");
     } else{
-        NSLog(@"NOT GUCCI");
+        [self showAlert];
     }
+}
+
+-(void)showAlert{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"No Permission!" message:@"Please allow Phil's Tonight to access your contacts by opening Settings -> Privacy -> Contacts" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+//    UIAlertAction *openSettings = [UIAlertAction actionWithTitle:@"Open Settings" style:UIAlertActionStyleDefault
+//                                                         handler:^(UIAlertAction * _Nonnull action) {
+//                                                             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+//                                                         }];
+    [alertController addAction:ok];
+//    [alertController addAction:openSettings];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 
