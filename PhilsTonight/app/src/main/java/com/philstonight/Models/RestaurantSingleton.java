@@ -14,6 +14,7 @@ public class RestaurantSingleton {
             restaurants = new ArrayList<>();
             restaurants.add("Phil's");
             restaurants.add("Chainsaw");
+            restaurants.add("Dallas");
             restaurants.add("Beta");
             restaurants.add("Night School");
             restaurants.add("Bomber");
