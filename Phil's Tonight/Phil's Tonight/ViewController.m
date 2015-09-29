@@ -68,20 +68,18 @@
     
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 0;
-}
-
--(NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 0;
-}
-
--(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return nil;
-}
-
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return nil;
+    static NSString *tableId = @"TableCellId";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tableId];
+    
+    if (cell == nil){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tableId];
+    }
+    
+    cell.textLabel.text = [_testArray objectAtIndex:indexPath.row];
+    
+    return cell;
 }
 
 

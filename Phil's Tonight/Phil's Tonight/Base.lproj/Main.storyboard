@@ -30,20 +30,20 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6cG-LN-SVV">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="8bC-Xf-vdC" id="UgD-ZR-Iba"/>
-                                    <outlet property="delegate" destination="8bC-Xf-vdC" id="7dz-0c-6ah"/>
-                                </connections>
-                            </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h8b-ZY-hvs">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Phil's Tonight?">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6cG-LN-SVV">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="IaJ-hv-IYY"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="lGl-yD-s7R"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.29803921568627451" green="0.37647058823529411" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -71,8 +71,8 @@
                             <mask key="subviews">
                                 <exclude reference="i1J-gy-HEJ"/>
                                 <exclude reference="6VB-1w-B1y"/>
-                                <exclude reference="6cG-LN-SVV"/>
                                 <exclude reference="h8b-ZY-hvs"/>
+                                <exclude reference="6cG-LN-SVV"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="0Wx-Yi-Iy0"/>
@@ -94,8 +94,8 @@
                             <mask key="subviews">
                                 <include reference="i1J-gy-HEJ"/>
                                 <include reference="6VB-1w-B1y"/>
-                                <include reference="6cG-LN-SVV"/>
                                 <include reference="h8b-ZY-hvs"/>
+                                <include reference="6cG-LN-SVV"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="0Wx-Yi-Iy0"/>
@@ -116,6 +116,7 @@
                     </view>
                     <connections>
                         <outlet property="addContactBtn" destination="6VB-1w-B1y" id="pr0-5b-1zn"/>
+                        <outlet property="tableView" destination="6cG-LN-SVV" id="Ee8-RU-pkT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

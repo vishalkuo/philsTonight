@@ -12,7 +12,14 @@
 
 @interface ViewController : UIViewController <CNContactViewControllerDelegate, CNContactPickerDelegate, UITableViewDataSource, UITableViewDelegate>
 
+/**
+ * UI ELEMENTS
+ **/
 @property(weak, nonatomic)IBOutlet UIButton *addContactBtn;
+@property(weak, nonatomic)IBOutlet UITableView *tableView;
+/**
+ * MODEL ELEMENTS
+ **/
 @property (strong, nonatomic)CNContactPickerViewController *peoplePickerController;
 @property(strong, nonatomic)NSMutableArray *peopleList;
 @property(strong, nonatomic)NSArray *testArray;
