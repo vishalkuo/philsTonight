@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E51F9AE21BBB19CA00991C6E /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = E51F9AE11BBB19CA00991C6E /* Person.m */; settings = {ASSET_TAGS = (); }; };
 		E52FA9D51BB46203002104DC /* ToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = E52FA9D41BB46203002104DC /* ToastView.m */; settings = {ASSET_TAGS = (); }; };
 		E56E083B1BB3A04000C0CA29 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E56E083A1BB3A04000C0CA29 /* main.m */; };
 		E56E083E1BB3A04000C0CA29 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E56E083D1BB3A04000C0CA29 /* AppDelegate.m */; };
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E51F9AE01BBB19CA00991C6E /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		E51F9AE11BBB19CA00991C6E /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		E52FA9D31BB46203002104DC /* ToastView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastView.h; sourceTree = "<group>"; };
 		E52FA9D41BB46203002104DC /* ToastView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastView.m; sourceTree = "<group>"; };
 		E56E08361BB3A04000C0CA29 /* Phil's Tonight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Phil's Tonight.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +84,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E51F9ADE1BBB19AA00991C6E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E51F9AE01BBB19CA00991C6E /* Person.h */,
+				E51F9AE11BBB19CA00991C6E /* Person.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		E51F9ADF1BBB19B300991C6E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E56E08421BB3A04000C0CA29 /* Main.storyboard */,
+				E56E08471BB3A04000C0CA29 /* LaunchScreen.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		E5305C9F1BB5CCA0000CA394 /* UIUtils */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,13 +143,13 @@
 		E56E08381BB3A04000C0CA29 /* Phil's Tonight */ = {
 			isa = PBXGroup;
 			children = (
+				E51F9ADF1BBB19B300991C6E /* Views */,
+				E51F9ADE1BBB19AA00991C6E /* Models */,
 				E5305C9F1BB5CCA0000CA394 /* UIUtils */,
 				E56E083C1BB3A04000C0CA29 /* AppDelegate.h */,
 				E56E083D1BB3A04000C0CA29 /* AppDelegate.m */,
 				E5305CA31BB5CCDA000CA394 /* ViewControllers */,
-				E56E08421BB3A04000C0CA29 /* Main.storyboard */,
 				E56E08451BB3A04000C0CA29 /* Assets.xcassets */,
-				E56E08471BB3A04000C0CA29 /* LaunchScreen.storyboard */,
 				E56E084A1BB3A04000C0CA29 /* Info.plist */,
 				E56E08391BB3A04000C0CA29 /* Supporting Files */,
 			);
@@ -293,6 +314,7 @@
 			files = (
 				E52FA9D51BB46203002104DC /* ToastView.m in Sources */,
 				E56E08411BB3A04000C0CA29 /* ViewController.m in Sources */,
+				E51F9AE21BBB19CA00991C6E /* Person.m in Sources */,
 				E56E083E1BB3A04000C0CA29 /* AppDelegate.m in Sources */,
 				E56E083B1BB3A04000C0CA29 /* main.m in Sources */,
 			);

@@ -7,11 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AddressBookUI/AddressBookUI.h>
 
-@interface ViewController : UIViewController
+@import ContactsUI;
+
+@interface ViewController : UIViewController <CNContactViewControllerDelegate, CNContactPickerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property(weak, nonatomic)IBOutlet UIButton *addContactBtn;
+@property (strong, nonatomic)CNContactPickerViewController *peoplePickerController;
+@property(strong, nonatomic)NSMutableArray *peopleList;
+@property(strong, nonatomic)NSArray *testArray;
+
+-(void)loadContacts;
 
 @end
 

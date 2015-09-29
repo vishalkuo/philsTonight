@@ -8,16 +8,17 @@
 
 #import "ViewController.h"
 #import "ToastView.h"
-
-@interface ViewController ()
-
--(void)loadContacts;
-@end
+#import "Person.h"
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _peoplePickerController = [[CNContactPickerViewController alloc] init];
+    _peoplePickerController.delegate = self;
+    
+    _testArray = [NSArray arrayWithObjects:@"Egg Benedict", @"Mushroom Risotto", @"Full Breakfast", @"Hamburger", @"Ham and Egg Sandwich", @"Creme Brelee", @"White Chocolate Donut", @"Starbucks Coffee", @"Vegetable Curry", @"Instant Noodle with Egg", @"Noodle with BBQ Pork", @"Japanese Noodle with Pork", @"Green Tea", @"Thai Shrimp Cake", @"Angry Birds Cake", @"Ham and Cheese Panini", nil];
     
     [_addContactBtn addTarget:self action:@selector(loadContacts) forControlEvents:UIControlEventTouchUpInside];
 
@@ -29,17 +30,18 @@
 }
 
 -(void)loadContacts{
-    ABAddressBookRef addressBookRef =  ABAddressBookCreateWithOptions(NULL, NULL);
-    if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusNotDetermined){
-        ABAddressBookRequestAccessWithCompletion(addressBookRef, ^(bool granted, CFErrorRef error) {
+    CNContactStore *contactStore = [[CNContactStore alloc] init];
+    
+    if ([CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts] == CNAuthorizationStatusNotDetermined){
+        [contactStore requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable error) {
             if (granted){
-                NSLog(@"GRANTED");
+                [self presentViewController:_peoplePickerController animated:YES completion:nil];
             }else{
                 [ToastView showToast:self.view withText:@"REJECTED" withDuration:1.0f];
             }
-        });
-    } else if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized){
-        NSLog(@"GUCCI");
+        }];
+    } else if ([CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts] == CNAuthorizationStatusAuthorized){
+        [self presentViewController:_peoplePickerController animated:YES completion:nil];
     } else{
         [self showAlert];
     }
@@ -49,15 +51,42 @@
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"No Permission!" message:@"Please allow Phil's Tonight to access your contacts by opening Settings -> Privacy -> Contacts" preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-//    UIAlertAction *openSettings = [UIAlertAction actionWithTitle:@"Open Settings" style:UIAlertActionStyleDefault
-//                                                         handler:^(UIAlertAction * _Nonnull action) {
-//                                                             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-//                                                         }];
+    
     [alertController addAction:ok];
-//    [alertController addAction:openSettings];
     
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
+-(void)contactViewController:(CNContactViewController *)viewController didCompleteWithContact:(CNContact *)contact{
+}
+
+-(void)contactPickerDidCancel:(CNContactPickerViewController *)picker{
+    
+}
+
+-(void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact{
+    
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 0;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 0;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return nil;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return nil;
+}
+
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return [_testArray count];
+}
 
 @end
