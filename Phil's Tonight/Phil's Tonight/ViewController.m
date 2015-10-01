@@ -66,6 +66,11 @@
 
 -(void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact{
     
+    NSString *completeName = [NSString stringWithFormat:@"%@ %@", [contact givenName], [contact familyName]];
+    CNLabeledValue<CNPhoneNumber *> *firstPhoneNum = [contact phoneNumbers][0];
+                                                                            
+    NSLog([firstPhoneNum value]);
+    //    Person *person = [[Person alloc] initWithParams:[contact givenName] phoneNumber:[contact phoneNumbers]];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
