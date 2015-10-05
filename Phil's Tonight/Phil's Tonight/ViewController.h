@@ -7,15 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 
 @import ContactsUI;
 
-@interface ViewController : UIViewController <CNContactViewControllerDelegate, CNContactPickerDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface ViewController : UIViewController <CNContactViewControllerDelegate, CNContactPickerDelegate, UITableViewDataSource, UITableViewDelegate, MFMessageComposeViewControllerDelegate>
 
 /**
  * UI ELEMENTS
  **/
 @property(weak, nonatomic)IBOutlet UIButton *addContactBtn;
+@property(weak, nonatomic)IBOutlet UIButton *philsBtn;
 @property(weak, nonatomic)IBOutlet UITableView *tableView;
 /**
  * MODEL ELEMENTS
@@ -24,7 +26,10 @@
 @property(strong, nonatomic)NSMutableArray *peopleList;
 @property(strong, nonatomic)NSArray *testArray;
 
+@property(strong, nonatomic)NSUserDefaults *defaults;
+
 -(void)loadContacts;
+-(void)alertSquad;
 
 @end
 

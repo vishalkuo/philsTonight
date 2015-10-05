@@ -116,6 +116,7 @@
                     </view>
                     <connections>
                         <outlet property="addContactBtn" destination="6VB-1w-B1y" id="pr0-5b-1zn"/>
+                        <outlet property="philsBtn" destination="h8b-ZY-hvs" id="vEh-ky-Nan"/>
                         <outlet property="tableView" destination="6cG-LN-SVV" id="Ee8-RU-pkT"/>
                     </connections>
                 </viewController>
