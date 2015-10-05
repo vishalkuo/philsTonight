@@ -17,8 +17,7 @@
     
     _peoplePickerController = [[CNContactPickerViewController alloc] init];
     _peoplePickerController.delegate = self;
-    
-    _testArray = [NSArray arrayWithObjects:@"Egg Benedict", @"Mushroom Risotto", @"Full Breakfast", @"Hamburger", @"Ham and Egg Sandwich", @"Creme Brelee", @"White Chocolate Donut", @"Starbucks Coffee", @"Vegetable Curry", @"Instant Noodle with Egg", @"Noodle with BBQ Pork", @"Japanese Noodle with Pork", @"Green Tea", @"Thai Shrimp Cake", @"Angry Birds Cake", @"Ham and Cheese Panini", nil];
+    _peopleList = [[NSMutableArray alloc] init];
     
     [_addContactBtn addTarget:self action:@selector(loadContacts) forControlEvents:UIControlEventTouchUpInside];
 
@@ -68,9 +67,10 @@
     
     NSString *completeName = [NSString stringWithFormat:@"%@ %@", [contact givenName], [contact familyName]];
     CNLabeledValue<CNPhoneNumber *> *firstPhoneNum = [contact phoneNumbers][0];
-                                                                            
-    NSLog([firstPhoneNum value]);
-    //    Person *person = [[Person alloc] initWithParams:[contact givenName] phoneNumber:[contact phoneNumbers]];
+    CNPhoneNumber *phoneNum = [firstPhoneNum value];
+    Person *person = [[Person alloc] initWithParams:completeName phoneNumber:[phoneNum stringValue]];
+    [_peopleList addObject:person];
+    [_tableView reloadData];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -82,14 +82,14 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tableId];
     }
     
-    cell.textLabel.text = [_testArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = [[_peopleList objectAtIndex:indexPath.row] fullName];
     
     return cell;
 }
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [_testArray count];
+    return [_peopleList count];
 }
 
 @end
