@@ -26,7 +26,6 @@
     
     if (dict != nil){
         for(NSString *key in dict){
-            NSLog(key);
             if([[key substringToIndex:2]  isEqual: @"++"]){
                 [_peopleList addObject:[[Person alloc] initWithParams:[key substringFromIndex:2] phoneNumber:[dict valueForKey:key]]];
             }
