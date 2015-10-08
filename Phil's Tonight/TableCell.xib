@@ -15,22 +15,33 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hi-AJ-Opq">
-                        <rect key="frame" x="267" y="25" width="28" height="29"/>
+                        <rect key="frame" x="265" y="25" width="30" height="30"/>
                         <animations/>
-                        <state key="normal" title="X"/>
+                        <state key="normal" title="X">
+                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W8h-NZ-5rb">
+                        <rect key="frame" x="30" y="29" width="42" height="20.5"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <animations/>
+                <color key="backgroundColor" red="0.29803921568627451" green="0.37647058823529411" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstAttribute="bottomMargin" secondItem="4hi-AJ-Opq" secondAttribute="bottom" constant="17.5" id="MXb-Te-VYb"/>
-                    <constraint firstItem="4hi-AJ-Opq" firstAttribute="leading" secondItem="4Nd-1e-uSp" secondAttribute="leadingMargin" constant="259" id="eVT-1z-F4h"/>
-                    <constraint firstItem="4hi-AJ-Opq" firstAttribute="top" secondItem="4Nd-1e-uSp" secondAttribute="topMargin" constant="17" id="fov-uM-M9G"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="4hi-AJ-Opq" secondAttribute="trailing" constant="17" id="i2j-Fl-k9A"/>
+                    <constraint firstItem="4hi-AJ-Opq" firstAttribute="centerY" secondItem="4Nd-1e-uSp" secondAttribute="centerY" id="CzU-qy-Vvp"/>
+                    <constraint firstItem="W8h-NZ-5rb" firstAttribute="leading" secondItem="4Nd-1e-uSp" secondAttribute="leadingMargin" constant="22" id="hyK-6F-yLJ"/>
+                    <constraint firstItem="W8h-NZ-5rb" firstAttribute="centerY" secondItem="4Nd-1e-uSp" secondAttribute="centerY" id="lUK-DW-mZQ"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="4hi-AJ-Opq" secondAttribute="trailing" constant="17" id="tRe-gR-jLw"/>
                 </constraints>
             </tableViewCellContentView>
             <animations/>
             <connections>
                 <outlet property="deleteBtn" destination="4hi-AJ-Opq" id="unC-ct-Aac"/>
+                <outlet property="nameLabel" destination="W8h-NZ-5rb" id="wAm-bm-B5k"/>
             </connections>
             <point key="canvasLocation" x="235" y="439"/>
         </tableViewCell>

@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "ToastView.h"
 #import "Person.h"
+#import "CustomTableViewCell.h"
 
 @implementation ViewController
 
@@ -91,12 +92,13 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *tableId = @"TableCellId";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tableId];
+    static NSString *tableId = @"TableCell";
+    CustomTableViewCell *cell = (CustomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:tableId];
     if (cell == nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tableId];
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:tableId owner:self options:nil];
+        cell = [nib objectAtIndex:0];
     }
-    cell.textLabel.text = [[_peopleList objectAtIndex:indexPath.row] fullName];
+    cell.nameLabel.text = [[_peopleList objectAtIndex:indexPath.row] fullName];
     return cell;
 }
 
