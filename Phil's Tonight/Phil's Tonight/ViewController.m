@@ -17,6 +17,11 @@
     [super viewDidLoad];
     _defaults = [NSUserDefaults standardUserDefaults];
     
+    if ([_tableView respondsToSelector:@selector(setSeparatorInset:)]) {  // Safety check for below
+        [_tableView setSeparatorInset:UIEdgeInsetsZero];
+    }
+
+    
     _peoplePickerController = [[CNContactPickerViewController alloc] init];
     _peoplePickerController.delegate = self;
     _peopleList = [[NSMutableArray alloc] init];
@@ -99,6 +104,7 @@
         cell = [nib objectAtIndex:0];
     }
     cell.nameLabel.text = [[_peopleList objectAtIndex:indexPath.row] fullName];
+    cell.separatorInset = UIEdgeInsetsZero;
     return cell;
 }
 
