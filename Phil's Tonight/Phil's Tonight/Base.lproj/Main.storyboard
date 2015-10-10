@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phil's Tonight?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1J-gy-HEJ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phil's Tonight?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="i1J-gy-HEJ">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-LightItalic" family="Helvetica Neue" pointSize="31"/>
@@ -28,16 +28,25 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6VB-1w-B1y">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <animations/>
-                                <state key="normal" title="+">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="99n-A6-Fgh"/>
+                                    <constraint firstAttribute="width" constant="45" id="YIA-0a-Wd9"/>
+                                </constraints>
+                                <state key="normal" title="+" backgroundImage="AppendBtn.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h8b-ZY-hvs">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <animations/>
-                                <state key="normal" title="Phil's Tonight?">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="99n-A6-Fgh"/>
+                                        <exclude reference="YIA-0a-Wd9"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="99n-A6-Fgh"/>
+                                        <include reference="YIA-0a-Wd9"/>
+                                    </mask>
+                                </variation>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6cG-LN-SVV">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -50,77 +59,101 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="lGl-yD-s7R"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h8b-ZY-hvs">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="67" id="CCc-gZ-Zd3"/>
+                                    <constraint firstAttribute="width" constant="200" id="ZOT-gb-MjA"/>
+                                </constraints>
+                                <state key="normal" title="Phil's Tonight?" backgroundImage="ButtonBg.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="CCc-gZ-Zd3"/>
+                                        <exclude reference="ZOT-gb-MjA"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="CCc-gZ-Zd3"/>
+                                        <include reference="ZOT-gb-MjA"/>
+                                    </mask>
+                                </variation>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.29803921568627451" green="0.37647058823529411" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="i1J-gy-HEJ" secondAttribute="bottom" constant="500" id="0Wx-Yi-Iy0"/>
-                            <constraint firstItem="6VB-1w-B1y" firstAttribute="baseline" secondItem="i1J-gy-HEJ" secondAttribute="baseline" id="5Ub-6E-Uba"/>
-                            <constraint firstItem="h8b-ZY-hvs" firstAttribute="top" secondItem="6cG-LN-SVV" secondAttribute="bottom" constant="45" id="AIA-VT-phg"/>
+                            <constraint firstItem="h8b-ZY-hvs" firstAttribute="centerX" secondItem="6cG-LN-SVV" secondAttribute="centerX" id="3HB-lm-g6H"/>
                             <constraint firstItem="6cG-LN-SVV" firstAttribute="top" secondItem="i1J-gy-HEJ" secondAttribute="bottom" constant="24" id="EMm-5T-b3S"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6VB-1w-B1y" secondAttribute="trailing" constant="8" id="FcI-4K-k2C"/>
+                            <constraint firstItem="6VB-1w-B1y" firstAttribute="leading" secondItem="i1J-gy-HEJ" secondAttribute="trailing" constant="22" id="I5s-3H-OjO"/>
+                            <constraint firstAttribute="bottom" secondItem="h8b-ZY-hvs" secondAttribute="bottom" constant="20" symbolic="YES" id="JtO-ME-otH"/>
                             <constraint firstItem="i1J-gy-HEJ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="34" id="LxP-fu-nXx">
                                 <variation key="widthClass=compact" constant="8"/>
                             </constraint>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="h8b-ZY-hvs" secondAttribute="bottom" constant="40" id="OYD-Cc-rQn"/>
                             <constraint firstAttribute="trailingMargin" secondItem="i1J-gy-HEJ" secondAttribute="trailing" constant="100" id="Vd5-v5-qgz">
                                 <variation key="widthClass=compact" constant="75"/>
                             </constraint>
+                            <constraint firstItem="6VB-1w-B1y" firstAttribute="top" secondItem="i1J-gy-HEJ" secondAttribute="bottom" constant="-28" id="Wbe-I1-v1Q"/>
                             <constraint firstItem="i1J-gy-HEJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="100" id="dOl-JO-jbS">
                                 <variation key="widthClass=compact" constant="75"/>
                             </constraint>
-                            <constraint firstAttribute="trailingMargin" secondItem="6VB-1w-B1y" secondAttribute="trailing" constant="8" id="eAR-tc-MJA"/>
                             <constraint firstAttribute="leadingMargin" secondItem="6cG-LN-SVV" secondAttribute="leading" constant="-8" id="ek1-2d-UCA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6cG-LN-SVV" secondAttribute="trailing" constant="8" id="lx7-uW-WYJ"/>
-                            <constraint firstItem="h8b-ZY-hvs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="100" id="nW9-GW-U7v"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="h8b-ZY-hvs" secondAttribute="trailing" constant="100" id="slQ-lQ-Lbr"/>
+                            <constraint firstItem="h8b-ZY-hvs" firstAttribute="top" secondItem="6cG-LN-SVV" secondAttribute="bottom" constant="28" id="yWc-Fz-zWd"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="i1J-gy-HEJ"/>
                                 <exclude reference="6VB-1w-B1y"/>
-                                <exclude reference="h8b-ZY-hvs"/>
                                 <exclude reference="6cG-LN-SVV"/>
+                                <exclude reference="h8b-ZY-hvs"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="0Wx-Yi-Iy0"/>
-                                <exclude reference="OYD-Cc-rQn"/>
-                                <exclude reference="5Ub-6E-Uba"/>
-                                <exclude reference="eAR-tc-MJA"/>
-                                <exclude reference="AIA-VT-phg"/>
-                                <exclude reference="nW9-GW-U7v"/>
-                                <exclude reference="slQ-lQ-Lbr"/>
                                 <exclude reference="LxP-fu-nXx"/>
                                 <exclude reference="Vd5-v5-qgz"/>
                                 <exclude reference="dOl-JO-jbS"/>
                                 <exclude reference="EMm-5T-b3S"/>
                                 <exclude reference="ek1-2d-UCA"/>
                                 <exclude reference="lx7-uW-WYJ"/>
+                                <exclude reference="FcI-4K-k2C"/>
+                                <exclude reference="I5s-3H-OjO"/>
+                                <exclude reference="Wbe-I1-v1Q"/>
+                                <exclude reference="3HB-lm-g6H"/>
+                                <exclude reference="JtO-ME-otH"/>
+                                <exclude reference="yWc-Fz-zWd"/>
+                                <exclude reference="0Wx-Yi-Iy0"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="i1J-gy-HEJ"/>
                                 <include reference="6VB-1w-B1y"/>
-                                <include reference="h8b-ZY-hvs"/>
                                 <include reference="6cG-LN-SVV"/>
+                                <include reference="h8b-ZY-hvs"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="0Wx-Yi-Iy0"/>
-                                <include reference="OYD-Cc-rQn"/>
-                                <include reference="5Ub-6E-Uba"/>
-                                <include reference="eAR-tc-MJA"/>
-                                <include reference="AIA-VT-phg"/>
-                                <include reference="nW9-GW-U7v"/>
-                                <include reference="slQ-lQ-Lbr"/>
                                 <include reference="LxP-fu-nXx"/>
                                 <include reference="Vd5-v5-qgz"/>
                                 <include reference="dOl-JO-jbS"/>
                                 <include reference="EMm-5T-b3S"/>
                                 <include reference="ek1-2d-UCA"/>
                                 <include reference="lx7-uW-WYJ"/>
+                                <include reference="FcI-4K-k2C"/>
+                                <include reference="I5s-3H-OjO"/>
+                                <include reference="Wbe-I1-v1Q"/>
+                                <include reference="3HB-lm-g6H"/>
+                                <include reference="JtO-ME-otH"/>
+                                <include reference="yWc-Fz-zWd"/>
+                                <include reference="0Wx-Yi-Iy0"/>
                             </mask>
                         </variation>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="addContactBtn" destination="6VB-1w-B1y" id="pr0-5b-1zn"/>
                         <outlet property="philsBtn" destination="h8b-ZY-hvs" id="vEh-ky-Nan"/>
@@ -132,4 +165,8 @@
             <point key="canvasLocation" x="304.5" y="387"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="AppendBtn.png" width="75" height="75"/>
+        <image name="ButtonBg.png" width="300" height="120"/>
+    </resources>
 </document>

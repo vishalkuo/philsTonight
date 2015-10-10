@@ -15,6 +15,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     _defaults = [NSUserDefaults standardUserDefaults];
     
     if ([_tableView respondsToSelector:@selector(setSeparatorInset:)]) {  // Safety check for below
@@ -54,7 +55,7 @@
             if (granted){
                 [self presentViewController:_peoplePickerController animated:YES completion:nil];
             }else{
-                [ToastView showToast:self.view withText:@"REJECTED" withDuration:1.0f];
+                [ToastView showToast:self.view withText:@"No Contacts Permission!" withDuration:1.0f];
             }
         }];
     } else if ([CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts] == CNAuthorizationStatusAuthorized){
@@ -78,7 +79,7 @@
 }
 
 -(void)contactPickerDidCancel:(CNContactPickerViewController *)picker{
-    
+    [ToastView showToast:self.view withText:@"Denied from Squad" withDuration:1.0f];
 }
 
 -(void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact{
@@ -87,7 +88,8 @@
     CNLabeledValue<CNPhoneNumber *> *firstPhoneNum = [contact phoneNumbers][0];
     CNPhoneNumber *phoneNum = [firstPhoneNum value];
     if ([[phoneNum stringValue] length] == 0){
-        NSLog(@"BAD");
+        [ToastView showToast:self.view withText:@"No phone number!" withDuration:1.0f];
+        return;
     }
     Person *person = [[Person alloc] initWithParams:completeName phoneNumber:[phoneNum stringValue]];
     [_peopleList addObject:person];
@@ -116,9 +118,14 @@
 
 -(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result{
     [self dismissViewControllerAnimated:YES completion:nil];
-    [ToastView showToast:self.view withText:@"Squad alerted." withDuration:0.8f];
+    if (result == 1){
+        [ToastView showToast:self.view withText:@"Squad alerted." withDuration:0.8f];
+    }
+    
     
 }
+
+
 
 -(void)alertSquad{
     if(![MFMessageComposeViewController canSendText]){
@@ -148,6 +155,10 @@
         
         [ToastView showToast:self.view withText:@"Removed from Squad" withDuration:1.0f];
     }
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
 }
 
 @end

@@ -19,6 +19,8 @@
 		E56E085F1BB3A04000C0CA29 /* Phil_s_TonightUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E56E085E1BB3A04000C0CA29 /* Phil_s_TonightUITests.m */; };
 		E58B1B631BC6AC4F00E8126A /* TableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E58B1B621BC6AC4F00E8126A /* TableCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E58B1B661BC6ACD600E8126A /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E58B1B651BC6ACD600E8126A /* CustomTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		E5FAAC6C1BC9B475009EC335 /* ButtonBg.png in Resources */ = {isa = PBXBuildFile; fileRef = E5FAAC6B1BC9B475009EC335 /* ButtonBg.png */; settings = {ASSET_TAGS = (); }; };
+		E5FAAC6E1BC9B59D009EC335 /* AppendBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = E5FAAC6D1BC9B59D009EC335 /* AppendBtn.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		E58B1B621BC6AC4F00E8126A /* TableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TableCell.xib; path = ../TableCell.xib; sourceTree = "<group>"; };
 		E58B1B641BC6ACD600E8126A /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
 		E58B1B651BC6ACD600E8126A /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
+		E5FAAC6B1BC9B475009EC335 /* ButtonBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonBg.png; sourceTree = "<group>"; };
+		E5FAAC6D1BC9B59D009EC335 /* AppendBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppendBtn.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +155,7 @@
 		E56E08381BB3A04000C0CA29 /* Phil's Tonight */ = {
 			isa = PBXGroup;
 			children = (
+				E5FAAC6A1BC9B396009EC335 /* Assets */,
 				E51F9ADF1BBB19B300991C6E /* Views */,
 				E51F9ADE1BBB19AA00991C6E /* Models */,
 				E5305C9F1BB5CCA0000CA394 /* UIUtils */,
@@ -188,6 +193,15 @@
 				E56E08601BB3A04000C0CA29 /* Info.plist */,
 			);
 			path = "Phil's TonightUITests";
+			sourceTree = "<group>";
+		};
+		E5FAAC6A1BC9B396009EC335 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				E5FAAC6B1BC9B475009EC335 /* ButtonBg.png */,
+				E5FAAC6D1BC9B59D009EC335 /* AppendBtn.png */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,6 +311,8 @@
 				E58B1B631BC6AC4F00E8126A /* TableCell.xib in Resources */,
 				E56E08461BB3A04000C0CA29 /* Assets.xcassets in Resources */,
 				E56E08441BB3A04000C0CA29 /* Main.storyboard in Resources */,
+				E5FAAC6E1BC9B59D009EC335 /* AppendBtn.png in Resources */,
+				E5FAAC6C1BC9B475009EC335 /* ButtonBg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
