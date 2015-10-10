@@ -10,7 +10,6 @@
 
 @interface CustomTableViewCell : UITableViewCell
 
-@property (nonatomic, weak)IBOutlet UIButton *deleteBtn;
 @property (weak, nonatomic)IBOutlet UILabel *nameLabel;
 
 @end

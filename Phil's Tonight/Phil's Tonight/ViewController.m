@@ -18,6 +18,7 @@
     _defaults = [NSUserDefaults standardUserDefaults];
     
     if ([_tableView respondsToSelector:@selector(setSeparatorInset:)]) {  // Safety check for below
+        _tableView.allowsMultipleSelectionDuringEditing = NO;
         [_tableView setSeparatorInset:UIEdgeInsetsZero];
     }
 
@@ -135,6 +136,18 @@
     [viewController setBody:message];
     
     [self presentViewController:viewController animated:YES completion:nil];
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSString *delString = [NSString stringWithFormat:@"++%@", [[_peopleList objectAtIndex:indexPath.row] fullName]];
+        [_peopleList removeObjectAtIndex:indexPath.row];
+        [_defaults removeObjectForKey:delString];
+        [_defaults synchronize];
+        [_tableView reloadData];
+        
+        [ToastView showToast:self.view withText:@"Removed from Squad" withDuration:1.0f];
+    }
 }
 
 @end

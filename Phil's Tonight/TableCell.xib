@@ -14,13 +14,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hi-AJ-Opq">
-                        <rect key="frame" x="265" y="25" width="30" height="30"/>
-                        <animations/>
-                        <state key="normal" title="X">
-                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        </state>
-                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W8h-NZ-5rb">
                         <rect key="frame" x="30" y="29" width="42" height="20.5"/>
                         <animations/>
@@ -32,15 +25,12 @@
                 <animations/>
                 <color key="backgroundColor" red="0.29803921568627451" green="0.37647058823529411" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstItem="4hi-AJ-Opq" firstAttribute="centerY" secondItem="4Nd-1e-uSp" secondAttribute="centerY" id="CzU-qy-Vvp"/>
                     <constraint firstItem="W8h-NZ-5rb" firstAttribute="leading" secondItem="4Nd-1e-uSp" secondAttribute="leadingMargin" constant="22" id="hyK-6F-yLJ"/>
                     <constraint firstItem="W8h-NZ-5rb" firstAttribute="centerY" secondItem="4Nd-1e-uSp" secondAttribute="centerY" id="lUK-DW-mZQ"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="4hi-AJ-Opq" secondAttribute="trailing" constant="17" id="tRe-gR-jLw"/>
                 </constraints>
             </tableViewCellContentView>
             <animations/>
             <connections>
-                <outlet property="deleteBtn" destination="4hi-AJ-Opq" id="unC-ct-Aac"/>
                 <outlet property="nameLabel" destination="W8h-NZ-5rb" id="wAm-bm-B5k"/>
             </connections>
             <point key="canvasLocation" x="235" y="439"/>
