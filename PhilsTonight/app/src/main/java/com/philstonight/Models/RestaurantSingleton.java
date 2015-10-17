@@ -19,6 +19,8 @@ public class RestaurantSingleton {
             restaurants.add("Night School");
             restaurants.add("Bomber");
             restaurants.add("Study");
+            restaurants.add("League");
+            restaurants.add("DOTA 2");
         }
         return restaurants;
     }
