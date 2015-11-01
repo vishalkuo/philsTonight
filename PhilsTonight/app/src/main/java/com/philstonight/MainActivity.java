@@ -1,13 +1,18 @@
 package com.philstonight;
 
+import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.ContactsContract;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
@@ -28,7 +33,9 @@ import com.philstonight.Util.SharedPrefsUtils;
 import com.philstonight.Util.UIUtils;
 import com.philstonight.ViewAdapters.SquadAdapter;
 
+import java.security.Permission;
 import java.util.ArrayList;
+import java.util.jar.Manifest;
 
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_SELECT_CONTACT = 1;
@@ -45,11 +52,22 @@ public class MainActivity extends AppCompatActivity {
     private Spinner placeSpinner;
     private ListView squadListView;
     private TextView tonight;
+    private boolean permissionsEnabled = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            int permissionCheck = ContextCompat.checkSelfPermission(c, android.Manifest.permission.READ_CONTACTS);
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED){
+                ActivityCompat.requestPermissions((Activity)c,
+                        new String[]{android.Manifest.permission.READ_CONTACTS}, Globals.PERM_REQ_CODE);
+            }
+        }
+
+
 
         /**
          * Load from prefs
@@ -97,7 +115,12 @@ public class MainActivity extends AppCompatActivity {
         contactButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addFromContacts(view);
+                if (permissionsEnabled){
+                    addFromContacts(view);
+                } else {
+                    UIUtils.toastShort(getResources().getString(R.string.perm_req), c);
+                }
+
             }
         });
 
@@ -223,6 +246,19 @@ public class MainActivity extends AppCompatActivity {
         if (val != null){
             placeSpinner.setSelection(RestaurantSingleton.getInstance().indexOf(val));
             philsButton.setText(val);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode){
+            case Globals.PERM_REQ_CODE: {
+                if (grantResults.length <= 0 || grantResults[0] != PackageManager.PERMISSION_GRANTED){
+                    permissionsEnabled = false;
+                    UIUtils.toastShort(getResources().getString(R.string.perm_req), c);
+                }
+            }
         }
     }
 }
