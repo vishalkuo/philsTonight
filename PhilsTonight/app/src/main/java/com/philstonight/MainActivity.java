@@ -33,9 +33,7 @@ import com.philstonight.Util.SharedPrefsUtils;
 import com.philstonight.Util.UIUtils;
 import com.philstonight.ViewAdapters.SquadAdapter;
 
-import java.security.Permission;
 import java.util.ArrayList;
-import java.util.jar.Manifest;
 
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_SELECT_CONTACT = 1;
