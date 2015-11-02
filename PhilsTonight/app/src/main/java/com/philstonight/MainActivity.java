@@ -63,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
                 ActivityCompat.requestPermissions((Activity)c,
                         new String[]{android.Manifest.permission.READ_CONTACTS}, Globals.PERM_REQ_CODE);
             }
+        } else {
+            permissionsEnabled = true;
         }
 
 
