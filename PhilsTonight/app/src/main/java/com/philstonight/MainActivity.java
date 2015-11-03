@@ -58,13 +58,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        String firstStart = SharedPrefsUtils.loadPrefValue(Globals.FIRST_START, Globals.INITIAL_SETTINGS, c);
+
+        if (firstStart == null){
+            ActivityCompat.requestPermissions((Activity)c,
+                    new String[]{android.Manifest.permission.READ_CONTACTS, Manifest.permission.SEND_SMS}, Globals.PERM_REQ_CODE);
+            firstStart = "DONE";
+            SharedPrefsUtils.saveToPrefs(Globals.FIRST_START,firstStart,  Globals.INITIAL_SETTINGS, c);
+        }
+
+
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             int permissionCheck = ContextCompat.checkSelfPermission(c, android.Manifest.permission.READ_CONTACTS);
             int smsCheck = ContextCompat.checkSelfPermission(c, Manifest.permission.SEND_SMS);
             if (permissionCheck != PackageManager.PERMISSION_GRANTED && smsCheck != PackageManager.PERMISSION_GRANTED){
                 ActivityCompat.requestPermissions((Activity)c,
                         new String[]{android.Manifest.permission.READ_CONTACTS, Manifest.permission.SEND_SMS}, Globals.PERM_REQ_CODE);
-                permissionsEnabled = true;
             }
         } else {
             permissionsEnabled = true;
@@ -260,6 +269,8 @@ public class MainActivity extends AppCompatActivity {
                 if (grantResults.length <= 0 || grantResults[0] != PackageManager.PERMISSION_GRANTED){
                     permissionsEnabled = false;
                     UIUtils.toastShort(getResources().getString(R.string.perm_req), c);
+                } else {
+                    permissionsEnabled = true;
                 }
             }
         }

@@ -43,5 +43,4 @@ public class SharedPrefsUtils {
         SharedPreferences preferences = context.getSharedPreferences(key, Context.MODE_PRIVATE);
         return preferences.getString(key, null);
     }
-
 }
