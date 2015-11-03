@@ -1,5 +1,6 @@
 package com.philstonight;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -59,9 +60,10 @@ public class MainActivity extends AppCompatActivity {
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             int permissionCheck = ContextCompat.checkSelfPermission(c, android.Manifest.permission.READ_CONTACTS);
-            if (permissionCheck != PackageManager.PERMISSION_GRANTED){
+            int smsCheck = ContextCompat.checkSelfPermission(c, Manifest.permission.SEND_SMS);
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED && smsCheck != PackageManager.PERMISSION_GRANTED){
                 ActivityCompat.requestPermissions((Activity)c,
-                        new String[]{android.Manifest.permission.READ_CONTACTS}, Globals.PERM_REQ_CODE);
+                        new String[]{android.Manifest.permission.READ_CONTACTS, Manifest.permission.SEND_SMS}, Globals.PERM_REQ_CODE);
                 permissionsEnabled = true;
             }
         } else {
