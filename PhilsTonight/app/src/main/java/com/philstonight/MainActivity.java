@@ -58,23 +58,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String firstStart = SharedPrefsUtils.loadPrefValue(Globals.FIRST_START, Globals.INITIAL_SETTINGS, c);
-
-        if (firstStart == null){
-            ActivityCompat.requestPermissions((Activity)c,
-                    new String[]{android.Manifest.permission.READ_CONTACTS, Manifest.permission.SEND_SMS}, Globals.PERM_REQ_CODE);
-            firstStart = "DONE";
-            SharedPrefsUtils.saveToPrefs(Globals.FIRST_START,firstStart,  Globals.INITIAL_SETTINGS, c);
-        }
+//        String firstStart = SharedPrefsUtils.loadPrefValue(Globals.FIRST_START, Globals.INITIAL_SETTINGS, c);
+//        if (firstStart == null){
+//            ActivityCompat.requestPermissions((Activity)c,
+//                    new String[]{android.Manifest.permission.READ_CONTACTS, Manifest.permission.SEND_SMS}, Globals.PERM_REQ_CODE);
+//            firstStart = "DONE";
+//            SharedPrefsUtils.saveToPrefs(Globals.FIRST_START,firstStart,  Globals.INITIAL_SETTINGS, c);
+//        }
 
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            int permissionCheck = ContextCompat.checkSelfPermission(c, android.Manifest.permission.READ_CONTACTS);
-            int smsCheck = ContextCompat.checkSelfPermission(c, Manifest.permission.SEND_SMS);
-            if (permissionCheck != PackageManager.PERMISSION_GRANTED && smsCheck != PackageManager.PERMISSION_GRANTED){
-                ActivityCompat.requestPermissions((Activity)c,
+//            int permissionCheck = ContextCompat.checkSelfPermission(c, android.Manifest.permission.READ_CONTACTS);
+//            int smsCheck = ContextCompat.checkSelfPermission(c, Manifest.permission.SEND_SMS);
+            ActivityCompat.requestPermissions((Activity)c,
                         new String[]{android.Manifest.permission.READ_CONTACTS, Manifest.permission.SEND_SMS}, Globals.PERM_REQ_CODE);
-            }
+
         } else {
             permissionsEnabled = true;
         }
